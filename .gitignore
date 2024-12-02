@@ -47,4 +47,3 @@ build
 
 # Ignore Docker env file
 **/docker.env
-**/Ballerina.toml
