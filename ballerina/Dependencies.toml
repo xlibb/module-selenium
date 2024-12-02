@@ -11,6 +11,31 @@ distribution-version = "2201.10.2"
 org = "ballerina"
 name = "jballerina.java"
 version = "0.0.0"
+modules = [
+	{org = "ballerina", packageName = "jballerina.java", moduleName = "jballerina.java"}
+]
+
+[[package]]
+org = "ballerina"
+name = "jballerina.java.arrays"
+version = "1.4.0"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"}
+]
+modules = [
+	{org = "ballerina", packageName = "jballerina.java.arrays", moduleName = "jballerina.java.arrays"}
+]
+
+[[package]]
+org = "ballerina"
+name = "lang.runtime"
+version = "0.0.0"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"}
+]
+modules = [
+	{org = "ballerina", packageName = "lang.runtime", moduleName = "lang.runtime"}
+]
 
 [[package]]
 org = "ballerina"
@@ -37,9 +62,36 @@ org = "xlibb"
 name = "selenium"
 version = "0.1.0"
 dependencies = [
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "jballerina.java.arrays"},
+	{org = "ballerina", name = "lang.runtime"},
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium"}
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.io"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.lang"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.net"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.nio.file"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.function"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.logging"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.bidi"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.chrome"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.chromium"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.devtools"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.edge"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.federatedcredentialmanagement"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.firefox"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.html5"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.logging"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.mobile"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.print"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote.http"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote.service"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.safari"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.virtualauthenticator"}
 ]
 
