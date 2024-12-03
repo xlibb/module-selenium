@@ -158,33 +158,6 @@ public function main() returns error? {
 }
 ```
 
-#### Selenium IDE for Finding Locators
-
-Selenium IDE is a handy tool for finding locators for web elements. Here's how to use it effectively:
-
-1. Install Selenium IDE: Download and install the Selenium IDE extension for your browser (Chrome or Firefox) [here](https://www.selenium.dev/selenium-ide/).
-2. Launch Selenium IDE: Open the Selenium IDE extension from your browser's toolbar.
-
-3. Start a New Project: Click on Create a New Project and name your project.
-
-<img width="947" alt="new project - side" src="./ballerina/resources/new project - side.png">
-
-4. Start Recording:
-    - Click on the Record a New Test in a New Project option.
-    - Enter the URL of the web application you want to test.
-    - Selenium IDE will open the URL in a new tab and start recording your actions.
-
-<img width="960" alt="start recording - side" src="./ballerina/resources/enter base url - side.png">
-
-5. Perform Actions on the Webpage: Interact with the web elements (e.g., click buttons, fill out forms) on the page. Selenium IDE will record these actions as steps in your test case.
-6. View Recorded Steps: Once done, stop the recording. The recorded steps will appear in the Selenium IDE window. Each step will include information about the action and the locator used.
-7. Inspect Locators:
-    - In the list of recorded steps, click on a step to view details.
-    - The Target field shows the locator for the web element (e.g., XPath, ID, Name, CSS selector, etc.).
-    - You can switch between different locator strategies by clicking the dropdown next to the locator. Selenium IDE will display alternatives if available.
-
-<img width="959" alt="find locators" src="./ballerina/resources/find locators.png">
-
 ## Examples
 
 The `Selenium` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/xlibb/module-selenium/tree/main/examples/), covering the following use cases:
