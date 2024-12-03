@@ -1,15 +1,15 @@
 import ballerina/io;
 import ballerina/lang.runtime;
 
-import dharshi/selenium.org.openqa.selenium;
-import dharshi/selenium.org.openqa.selenium.chrome;
+import xlibb/selenium.org.openqa.selenium;
+import xlibb/selenium.org.openqa.selenium.chrome;
 
 public function main() returns error? {
 
     Data data = check getData();
 
     chrome:ChromeDriver driver = chrome:newChromeDriver1();
-    driver.get("https://ipa-usecase-2-demo-frontend.vercel.app/");
+    driver.get("https://bal-selenium.choreoapps.dev/");
 
     runtime:sleep(2);
 
