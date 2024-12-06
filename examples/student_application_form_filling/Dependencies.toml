@@ -10,7 +10,7 @@ distribution-version = "2201.10.2"
 [[package]]
 org = "ballerina"
 name = "io"
-version = "1.6.1"
+version = "1.6.3"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"},
 	{org = "ballerina", name = "lang.value"}
@@ -23,25 +23,6 @@ modules = [
 org = "ballerina"
 name = "jballerina.java"
 version = "0.0.0"
-
-[[package]]
-org = "ballerina"
-name = "jballerina.java.arrays"
-version = "1.4.0"
-dependencies = [
-	{org = "ballerina", name = "jballerina.java"}
-]
-
-[[package]]
-org = "ballerina"
-name = "lang.runtime"
-version = "0.0.0"
-dependencies = [
-	{org = "ballerina", name = "jballerina.java"}
-]
-modules = [
-	{org = "ballerina", packageName = "lang.runtime", moduleName = "lang.runtime"}
-]
 
 [[package]]
 org = "ballerina"
@@ -72,52 +53,12 @@ modules = [
 ]
 
 [[package]]
-org = "dharshi"
-name = "selenium"
-version = "0.1.0"
-dependencies = [
-	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "jballerina.java.arrays"},
-	{org = "ballerinai", name = "observe"}
-]
-modules = [
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.io"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.lang"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.net"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.nio.file"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.util"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.util.function"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.java.util.logging"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.bidi"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.chrome"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.chromium"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.devtools"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.edge"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.federatedcredentialmanagement"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.firefox"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.html5"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.logging"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.mobile"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.print"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote.http"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote.service"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.safari"},
-	{org = "dharshi", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.virtualauthenticator"}
-]
-
-[[package]]
 org = "xlibb"
 name = "student_application_form_filling"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "lang.runtime"},
-	{org = "ballerinai", name = "observe"},
-	{org = "dharshi", name = "selenium"}
+	{org = "ballerinai", name = "observe"}
 ]
 modules = [
 	{org = "xlibb", packageName = "student_application_form_filling", moduleName = "student_application_form_filling"},
