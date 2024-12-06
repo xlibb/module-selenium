@@ -21,7 +21,7 @@ import selenium.java.nio.file as javaniofile;
 import selenium.java.util as javautil;
 import selenium.java.util.'function as javautilfunction;
 import selenium.java.util.logging as javautillogging;
-import selenium.org.openqa.selenium as orgopenqaselenium;
+import selenium.web as orgopenqaselenium;
 import selenium.org.openqa.selenium.federatedcredentialmanagement as orgopenqaseleniumfederatedcredentialmanagement;
 import selenium.org.openqa.selenium.print as orgopenqaseleniumprint;
 import selenium.org.openqa.selenium.virtualauthenticator as orgopenqaseleniumvirtualauthenticator;

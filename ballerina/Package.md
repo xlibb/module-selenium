@@ -9,10 +9,10 @@ This module automates web applications across various browsers. Selenium interac
 The core component of Selenium is the WebDriver. It is an interface for controlling a web browser instance and communicates with the browser through its native API. You can create a web driver based on the browser you want to automate.
 
 ```ballerina
-import xlibb/selenium.org.openqa.selenium.chrome;
-import xlibb/selenium.org.openqa.selenium.safari;
-import xlibb/selenium.org.openqa.selenium.edge;
-import xlibb/selenium.org.openqa.selenium.firefox;
+import xlibb/selenium.chrome;
+import xlibb/selenium.safari;
+import xlibb/selenium.edge;
+import xlibb/selenium.firefox;
 
 public function main() {
 
@@ -27,7 +27,7 @@ public function main() {
 #### Launching website.
 
 ```ballerina
-import xlibb/selenium.org.openqa.selenium.chrome;
+import xlibb/selenium.chrome;
 
 public function main() {
 
@@ -56,20 +56,20 @@ A locator is a way to identify elements on a page. Selenium provides support for
 ```
 
 ```ballerina
-import xlibb/selenium.org.openqa.selenium.chrome;
-import xlibb/selenium.org.openqa.selenium;
+import xlibb/selenium.chrome;
+import xlibb/selenium.web;
 import ballerina/io;
 
 public function main() {
 
     chrome:ChromeDriver driver = chrome:newChromeDriver1();
-    selenium:WebElement form = driver.findElement(selenium:By_id("form")); // By ID
-    selenium:WebElement searchboxByName = driver.findElement(selenium:By_name("q")); // By Name
-    selenium:WebElement searchboxbyCss = driver.findElement(selenium:By_cssSelector("#form .search-box")); // By CSS Selector
-    selenium:WebElement searchboxbyXpath = driver.findElement(selenium:By_xpath("//input[@id='search']")); // By XPath
-    selenium:WebElement searchboxbyClassName = driver.findElement(selenium:By_className("search-box")); // By Class Name
-    selenium:WebElement searchboxbyTagName = driver.findElement(selenium:By_tagName("input")); // By Tag Name
-    selenium:WebElement nestedElement = form.findElement(selenium:By_name("q")); // Locating a WebElement inside another WebElement
+    selenium:WebElement form = driver.findElement(web:By_id("form")); // By ID
+    selenium:WebElement searchboxByName = driver.findElement(web:By_name("q")); // By Name
+    selenium:WebElement searchboxbyCss = driver.findElement(web:By_cssSelector("#form .search-box")); // By CSS Selector
+    selenium:WebElement searchboxbyXpath = driver.findElement(web:By_xpath("//input[@id='search']")); // By XPath
+    selenium:WebElement searchboxbyClassName = driver.findElement(web:By_className("search-box")); // By Class Name
+    selenium:WebElement searchboxbyTagName = driver.findElement(web:By_tagName("input")); // By Tag Name
+    selenium:WebElement nestedElement = form.findElement(web:By_name("q")); // Locating a WebElement inside another WebElement
 }
 
 ```
@@ -81,22 +81,22 @@ To fetch data from a web element in Selenium, you can interact with it using var
 1. Text of an element (e.g., a paragraph or label):
 
 ```ballerina
-string labelText = driver.findElement(selenium:By_className("input-label")).getText();
+string labelText = driver.findElement(web:By_className("input-label")).getText();
 io:println(labelText); 
 ```
 
 2. Attribute value (e.g., value of an input field or the href attribute of a link):
 
 ```ballerina
-string value = driver.findElement(selenium:By_id("elementId")).getAttribute("value"); // For input fields
-string href = driver.findElement(selenium:By_tagName("a")).getAttribute("href"); // For links
+string value = driver.findElement(web:By_id("elementId")).getAttribute("value"); // For input fields
+string href = driver.findElement(web:By_tagName("a")).getAttribute("href"); // For links
 ```
 
 
 3. Checking if an element is displayed/enabled/selected:
 
 ```ballerina
-selenium:WebElement element = driver.findElement(selenium:By_id("elementId"));
+selenium:WebElement element = driver.findElement(web:By_id("elementId"));
 boolean isDisplayed = element.isDisplayed();
 boolean isEnabled = element.isEnabled();
 boolean isSelected = element.isSelected();
@@ -108,7 +108,7 @@ boolean isSelected = element.isSelected();
 To send user inputs to web elements, you can use the sendKeys() method, which simulates typing into text-based input fields (like textboxes, textareas, etc.).
 
 ```ballerina
-check driver.findElement(selenium:By_className("search-box")).sendKeys(["ballerina"]);
+check driver.findElement(web:By_className("search-box")).sendKeys(["ballerina"]);
 ```
 
 #### Performing Click event
@@ -116,7 +116,7 @@ check driver.findElement(selenium:By_className("search-box")).sendKeys(["balleri
 To perform a click event on a web element, you can use the click() method on the WebElement object. This is commonly used to simulate clicking on buttons, links, checkboxes, radio buttons, or any other clickable elements.
 
 ```ballerina
-driver.findElement(selenium:By_className("submit-btn")).click();
+driver.findElement(web:By_className("submit-btn")).click();
 ```
 
 #### Closing the browser
@@ -133,8 +133,8 @@ The below code will do the following,
 3. Search for 'http' module.
 
 ```ballerina
-import xlibb/selenium.org.openqa.selenium.chrome;
-import xlibb/selenium.org.openqa.selenium;
+import xlibb/selenium.chrome;
+import xlibb/selenium.web;
 import ballerina/lang.runtime;
 
 public function main() returns error? {
@@ -144,8 +144,8 @@ public function main() returns error? {
     // Wait for some time, till the page completely loads.
     runtime:sleep(2);
 
-    check driver.findElement(selenium:By_id("downshift-search-bar-input")).sendKeys(["http"]);
-    driver.findElement(selenium:By_className("Search_searchButton__iLPLB")).click();
+    check driver.findElement(web:By_id("downshift-search-bar-input")).sendKeys(["http"]);
+    driver.findElement(web:By_className("Search_searchButton__iLPLB")).click();
 }
 ```
 

@@ -8,7 +8,7 @@ authors = ["Ballerina"]
 keywords = ["selenium", "web-automation"]
 icon = "icon.png"
 repository = "https://github.com/xlibb/module-selenium"
-export = ["selenium", "selenium.org.openqa.selenium", "selenium.org.openqa.selenium.chrome", "selenium.org.openqa.selenium.edge", "selenium.org.openqa.selenium.firefox", "selenium.org.openqa.selenium.safari"]
+export = ["selenium", "selenium.web", "selenium.chrome", "selenium.edge", "selenium.firefox", "selenium.safari"]
 
 [build-options]
 observabilityIncluded = true
