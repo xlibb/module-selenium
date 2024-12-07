@@ -13,3 +13,12 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
+
+public const IOEXCEPTION = "IOException";
+
+type IOExceptionData record {
+    string message;
+};
+
+public type IOException distinct error<IOExceptionData>;
+

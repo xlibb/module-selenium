@@ -13,3 +13,11 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
+
+import ballerina/io;
+
+public function getData() returns Data|error {
+    json inputs = check io:fileReadJson("modules/resources/data.json");
+    Data data = check inputs.cloneWithType();
+    return data;
+}
