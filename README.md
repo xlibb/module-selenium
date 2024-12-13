@@ -79,6 +79,7 @@ public function main() {
     web:WebElement searchboxbyClassName = driver.findElement(web:By_className("search-box")); // By Class Name
     web:WebElement searchboxbyTagName = driver.findElement(web:By_tagName("input")); // By Tag Name
     web:WebElement nestedElement = form.findElement(web:By_name("q")); // Locating a WebElement inside another WebElement
+    web:WebElement[] inputElements = check driver.findAllElements(web:By_tagName("input")); // Locating all elements with same locator
 }
 
 ```
@@ -105,7 +106,7 @@ string href = driver.findElement(web:By_tagName("a")).getAttribute("href"); // F
 3. Checking if an element is displayed/enabled/selected:
 
 ```ballerina
-selenium:WebElement element = driver.findElement(web:By_id("elementId"));
+web:WebElement element = driver.findElement(web:By_id("elementId"));
 boolean isDisplayed = element.isDisplayed();
 boolean isEnabled = element.isEnabled();
 boolean isSelected = element.isSelected();
