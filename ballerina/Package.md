@@ -63,13 +63,14 @@ import ballerina/io;
 public function main() {
 
     chrome:ChromeDriver driver = chrome:newChromeDriver1();
-    selenium:WebElement form = driver.findElement(web:By_id("form")); // By ID
-    selenium:WebElement searchboxByName = driver.findElement(web:By_name("q")); // By Name
-    selenium:WebElement searchboxbyCss = driver.findElement(web:By_cssSelector("#form .search-box")); // By CSS Selector
-    selenium:WebElement searchboxbyXpath = driver.findElement(web:By_xpath("//input[@id='search']")); // By XPath
-    selenium:WebElement searchboxbyClassName = driver.findElement(web:By_className("search-box")); // By Class Name
-    selenium:WebElement searchboxbyTagName = driver.findElement(web:By_tagName("input")); // By Tag Name
-    selenium:WebElement nestedElement = form.findElement(web:By_name("q")); // Locating a WebElement inside another WebElement
+    web:WebElement form = driver.findElement(web:By_id("form")); // By ID
+    web:WebElement searchboxByName = driver.findElement(web:By_name("q")); // By Name
+    web:WebElement searchboxbyCss = driver.findElement(web:By_cssSelector("#form .search-box")); // By CSS Selector
+    web:WebElement searchboxbyXpath = driver.findElement(web:By_xpath("//input[@id='search']")); // By XPath
+    web:WebElement searchboxbyClassName = driver.findElement(web:By_className("search-box")); // By Class Name
+    web:WebElement searchboxbyTagName = driver.findElement(web:By_tagName("input")); // By Tag Name
+    web:WebElement nestedElement = form.findElement(web:By_name("q")); // Locating a WebElement inside another WebElement
+    web:WebElement[] inputElements = check driver.findAllElements(web:By_tagName("input")); // Locating all elements with same locator
 }
 
 ```
@@ -96,7 +97,7 @@ string href = driver.findElement(web:By_tagName("a")).getAttribute("href"); // F
 3. Checking if an element is displayed/enabled/selected:
 
 ```ballerina
-selenium:WebElement element = driver.findElement(web:By_id("elementId"));
+web:WebElement element = driver.findElement(web:By_id("elementId"));
 boolean isDisplayed = element.isDisplayed();
 boolean isEnabled = element.isEnabled();
 boolean isSelected = element.isSelected();

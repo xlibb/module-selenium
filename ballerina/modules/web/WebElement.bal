@@ -73,6 +73,21 @@ public distinct class WebElement {
         return newObj;
     }
 
+    # The function that maps to the `findElements` method of `org.openqa.selenium.chrome.ChromeDriver`.
+    #
+    # + locator - The `orgopenqaselenium:By` value required to map with the Java method parameter.
+    # + return - The `orgopenqaselenium:WebElement[]` value returning from the Java mapping.
+    public isolated function findAllElements(By locator) returns WebElement[]|error {
+        handle externalObj = org_openqa_selenium_WebElement_findElements(self.jObj, locator.jObj);
+        javautil:List newObj = new (externalObj);
+        WebElement[] elements = [];
+        javalang:Object[] arr = check newObj.toArray();
+        foreach var item in arr {
+            elements.push(check java:cast(item, WebElement));
+        }
+        return elements;
+    }
+
     # The function that maps to the `getAccessibleName` method of `org.openqa.selenium.WebElement`.
     #
     # + return - The `string` value returning from the Java mapping.

@@ -67,6 +67,7 @@ modules = [
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util"},
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.function"},
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.logging"},
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.stream"},
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.bidi"},
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.chromium"},
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.devtools"},

@@ -163,6 +163,22 @@ public distinct class ChromeDriver {
     # The function that maps to the `findElements` method of `org.openqa.selenium.chrome.ChromeDriver`.
     #
     # + locator - The `orgopenqaselenium:By` value required to map with the Java method parameter.
+    # + return - The `orgopenqaselenium:WebElement[]` value returning from the Java mapping.
+    public isolated function findAllElements(orgopenqaselenium:By locator) returns orgopenqaselenium:WebElement[]|error {
+        handle externalObj = org_openqa_selenium_chrome_ChromeDriver_findElements(self.jObj, locator.jObj);
+        javautil:List newObj = new (externalObj);
+        orgopenqaselenium:WebElement[] elements = [];
+        javalang:Object[] arr = check newObj.toArray();
+        foreach var item in arr {
+            elements.push(check java:cast(item, orgopenqaselenium:WebElement));
+        }
+        return elements;
+    }
+
+
+    # The function that maps to the `findElements` method of `org.openqa.selenium.chrome.ChromeDriver`.
+    #
+    # + locator - The `orgopenqaselenium:By` value required to map with the Java method parameter.
     # + return - The `javautil:List` value returning from the Java mapping.
     public isolated function findElements(orgopenqaselenium:By locator) returns javautil:List {
         handle externalObj = org_openqa_selenium_chrome_ChromeDriver_findElements(self.jObj, locator.jObj);
