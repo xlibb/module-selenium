@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com.
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -14,10 +14,12 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/io;
+import ballerina/jballerina.java;
 
-public function getData() returns Data|error {
-    json inputs = check io:fileReadJson("modules/resources/data.json");
-    Data data = check inputs.cloneWithType();
-    return data;
+isolated function init() {
+    setModule();
 }
+
+isolated function setModule() = @java:Method {
+    'class: "io.xlibb.selenium.utils.ModuleUtils"
+} external;

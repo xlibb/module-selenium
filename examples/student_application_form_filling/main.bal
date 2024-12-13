@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com.
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -17,121 +17,85 @@
 import ballerina/io;
 import ballerina/lang.runtime;
 
-import xlibb/selenium.web;
-import xlibb/selenium.chrome;
+import xlibb/selenium;
 
 public function main() returns error? {
 
     Data data = check getData();
 
-    chrome:ChromeDriver driver = chrome:newChromeDriver1();
-    driver.get("https://bal-selenium.choreoapps.dev/");
+    selenium:WebDriver driver = new ();
+    driver.openChrome("https://ballerina-ipa.choreoapps.dev/student-application");
+    driver.maximize();
 
     runtime:sleep(2);
 
-    driver.findElement(web:By_id("fullName")).click();
-    check driver.findElement(web:By_id("fullName")).sendKeys([data.fullName]);
-    driver.findElement(web:By_id("nameWithInitials")).click();
-    check driver.findElement(web:By_id("nameWithInitials")).sendKeys([data.nameWithInitials]);
-    driver.findElement(web:By_id("dob")).click();
-    check driver.findElement(web:By_id("dob")).sendKeys([data.dob]);
-    driver.findElement(web:By_id("age")).click();
-    check driver.findElement(web:By_id("age")).sendKeys([data.age]);
-    driver.findElement(web:By_id("nationality")).click();
-    check driver.findElement(web:By_id("nationality")).sendKeys([data.nationality]);
-    driver.findElement(web:By_id(data.gender)).click();
-    driver.findElement(web:By_id("address")).click();
-    check driver.findElement(web:By_id("address")).sendKeys([data.address]);
-    driver.findElement(web:By_id("mobile")).click();
-    check driver.findElement(web:By_id("mobile")).sendKeys([data.mobile]);
-    driver.findElement(web:By_id("district")).click();
-    check driver.findElement(web:By_id("district")).sendKeys([data.district]);
-    driver.findElement(web:By_id("gramaSevaka")).click();
-    check driver.findElement(web:By_id("gramaSevaka")).sendKeys([data.gramaSevaka]);
-    driver.findElement(web:By_id("nic")).click();
-    check driver.findElement(web:By_id("nic")).sendKeys([data.nic ?: ""]);
-    driver.findElement(web:By_id("passport")).click();
-    check driver.findElement(web:By_id("passport")).sendKeys([data.passport ?: ""]);
+    (check driver.findById("fullName")).sendKeys(data.fullName);
+    (check driver.findById("nameWithInitials")).sendKeys(data.nameWithInitials);
+    (check driver.findById("dob")).sendKeys(data.dob);
+    (check driver.findById("age")).sendKeys(data.age);
+    (check driver.findById("nationality")).sendKeys(data.nationality);
+    (check driver.findById(data.gender)).click();
+    (check driver.findById("address")).sendKeys(data.address);
+    (check driver.findById("mobile")).sendKeys(data.mobile);
+    (check driver.findById("district")).sendKeys(data.district);
+    (check driver.findById("gramaSevaka")).sendKeys(data.gramaSevaka);
+    (check driver.findById("nic")).sendKeys(data.nic ?: "");
+    (check driver.findById("passport")).sendKeys(data.passport ?: "");
 
     // 2. Emergency contact
-    driver.findElement(web:By_id("emer-name")).click();
-    check driver.findElement(web:By_id("emer-name")).sendKeys([data.emergency.name]);
-    driver.findElement(web:By_id("emer-address")).click();
-    check driver.findElement(web:By_id("emer-address")).sendKeys([data.emergency.address]);
-    driver.findElement(web:By_id("emer-mobile")).click();
-    check driver.findElement(web:By_id("emer-mobile")).sendKeys([data.emergency.mobile]);
-    driver.findElement(web:By_id("relationship")).click();
-    check driver.findElement(web:By_id("relationship")).sendKeys([data.emergency.relationship]);
-    driver.findElement(web:By_id("emer-email")).click();
-    check driver.findElement(web:By_id("emer-email")).sendKeys([data.emergency.email]);
+    (check driver.findById("emer-name")).sendKeys(data.emergency.name);
+    (check driver.findById("emer-address")).sendKeys(data.emergency.address);
+    (check driver.findById("emer-mobile")).sendKeys(data.emergency.mobile);
+    (check driver.findById("relationship")).sendKeys(data.emergency.relationship);
+    (check driver.findById("emer-email")).sendKeys(data.emergency.email);
 
     // 3. O/L results
-    driver.findElement(web:By_id("ol-school")).click();
-    check driver.findElement(web:By_id("ol-school")).sendKeys([data.olResults.school]);
-    driver.findElement(web:By_id("ol-year")).click();
-    check driver.findElement(web:By_id("ol-year")).sendKeys([data.olResults.year]);
-    driver.findElement(web:By_id("ol-index")).click();
-    check driver.findElement(web:By_id("ol-index")).sendKeys([data.olResults.index]);
+    (check driver.findById("ol-school")).sendKeys(data.olResults.school);
+    (check driver.findById("ol-year")).sendKeys(data.olResults.year);
+    (check driver.findById("ol-index")).sendKeys(data.olResults.index);
     foreach ResultsItem item in data.olResults.results {
-        driver.findElement(web:By_id("ol-subject")).click();
-        check driver.findElement(web:By_id("ol-subject")).sendKeys([item.subject]);
-        driver.findElement(web:By_id("ol-grade")).click();
-        check driver.findElement(web:By_id("ol-grade")).sendKeys([item.grade]);
-        driver.findElement(web:By_id("add-ol-result")).click();
+        (check driver.findById("ol-subject")).sendKeys(item.subject);
+        (check driver.findById("ol-grade")).sendKeys(item.grade);
+        (check driver.findById("add-ol-result")).click();
     }
 
     // 4. A/L results
-    driver.findElement(web:By_id("al-school")).click();
-    check driver.findElement(web:By_id("al-school")).sendKeys([data.alResults.school]);
-    driver.findElement(web:By_id("al-year")).click();
-    check driver.findElement(web:By_id("al-year")).sendKeys([data.alResults.year]);
-    driver.findElement(web:By_id("al-index")).click();
-    check driver.findElement(web:By_id("al-index")).sendKeys([data.alResults.index]);
-    driver.findElement(web:By_id("zScore")).click();
-    check driver.findElement(web:By_id("zScore")).sendKeys([data.alResults.zScore]);
-    driver.findElement(web:By_id("al-subject")).click();
+    (check driver.findById("al-school")).sendKeys(data.alResults.school);
+    (check driver.findById("al-year")).sendKeys(data.alResults.year);
+    (check driver.findById("al-index")).sendKeys(data.alResults.index);
+    (check driver.findById("zScore")).sendKeys(data.alResults.zScore);
     foreach ResultsItem item in data.alResults.results {
-        check driver.findElement(web:By_id("al-subject")).sendKeys([item.subject]);
-        driver.findElement(web:By_id("al-grade")).click();
-        check driver.findElement(web:By_id("al-grade")).sendKeys([item.grade]);
-        driver.findElement(web:By_id("add-al-result")).click();
+        (check driver.findById("al-subject")).sendKeys(item.subject);
+        (check driver.findById("al-grade")).sendKeys(item.grade);
+        (check driver.findById("add-al-result")).click();
     }
 
     // 5. Other qualifications
     foreach OtherQualificationsItem item in data.otherQualifications {
-        driver.findElement(web:By_id("course")).click();
-        check driver.findElement(web:By_id("course")).sendKeys([item.course]);
-        driver.findElement(web:By_id("nvq")).click();
-        check driver.findElement(web:By_id("nvq")).sendKeys([item.nvqLevel]);
-        driver.findElement(web:By_id("institute")).click();
-        check driver.findElement(web:By_id("institute")).sendKeys([item.institute]);
-        driver.findElement(web:By_id("nvq-year")).click();
-        check driver.findElement(web:By_id("nvq-year")).sendKeys([item.year]);
-        driver.findElement(web:By_id("nvq-result")).click();
-        check driver.findElement(web:By_id("nvq-result")).sendKeys([item.result]);
-        driver.findElement(web:By_id("add-nvq-result")).click();
+        (check driver.findById("course")).sendKeys(item.course);
+        (check driver.findById("nvq")).sendKeys(item.nvqLevel);
+        (check driver.findById("institute")).sendKeys(item.institute);
+        (check driver.findById("nvq-year")).sendKeys(item.year);
+        (check driver.findById("nvq-result")).sendKeys(item.result);
+        (check driver.findById("add-nvq-result")).click();
     }
 
     // 6. Extra curricular activities
-    driver.findElement(web:By_id("extra-activities")).click();
-    check driver.findElement(web:By_id("extra-activities")).sendKeys([data.extraCurricularActivities]);
+    (check driver.findById("extra-activities")).sendKeys(data.extraCurricularActivities);
 
     // 7. References
     foreach RefreesItem item in data.refrees {
-        driver.findElement(web:By_id("refree-name")).click();
-        check driver.findElement(web:By_id("refree-name")).sendKeys([item.name]);
-        driver.findElement(web:By_id("designation")).click();
-        check driver.findElement(web:By_id("designation")).sendKeys([item.designation]);
-        driver.findElement(web:By_id("refree-address")).click();
-        check driver.findElement(web:By_id("refree-address")).sendKeys([item.address]);
-        driver.findElement(web:By_id("refree-mobile")).click();
-        check driver.findElement(web:By_id("refree-mobile")).sendKeys([item.mobile]);
-        driver.findElement(web:By_id("add-refree")).click();
+        (check driver.findById("refree-name")).sendKeys(item.name);
+        (check driver.findById("designation")).sendKeys(item.designation);
+        (check driver.findById("refree-address")).sendKeys(item.address);
+        (check driver.findById("refree-mobile")).sendKeys(item.mobile);
+        (check driver.findById("add-refree")).click();
     }
 
     // submit button
-    driver.findElement(web:By_id("submit")).click();
+    (check driver.findById("submit")).click();
 
-    io:println("Data entered successsfully!");
+    io:println("Data entered successfully!");
+
 }
 

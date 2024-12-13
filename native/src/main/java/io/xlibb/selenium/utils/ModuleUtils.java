@@ -14,10 +14,23 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/io;
+package io.xlibb.selenium.utils;
 
-public function getData() returns Data|error {
-    json inputs = check io:fileReadJson("modules/resources/data.json");
-    Data data = check inputs.cloneWithType();
-    return data;
+import io.ballerina.runtime.api.Environment;
+import io.ballerina.runtime.api.Module;
+
+public class ModuleUtils {
+
+    private static Module module;
+
+    private ModuleUtils() {
+    }
+
+    public static Module getModule() {
+        return module;
+    }
+
+    public static void setModule(Environment environment) {
+        module = environment.getCurrentModule();
+    }
 }

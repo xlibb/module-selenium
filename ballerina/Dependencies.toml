@@ -17,13 +17,49 @@ modules = [
 
 [[package]]
 org = "ballerina"
-name = "jballerina.java.arrays"
-version = "1.4.0"
+name = "lang.__internal"
+version = "0.0.0"
+scope = "testOnly"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.object"}
+]
+
+[[package]]
+org = "ballerina"
+name = "lang.array"
+version = "0.0.0"
+scope = "testOnly"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.__internal"}
+]
+
+[[package]]
+org = "ballerina"
+name = "lang.error"
+version = "0.0.0"
+scope = "testOnly"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"}
+]
+
+[[package]]
+org = "ballerina"
+name = "lang.object"
+version = "0.0.0"
+scope = "testOnly"
+
+[[package]]
+org = "ballerina"
+name = "lang.runtime"
+version = "0.0.0"
+scope = "testOnly"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"}
 ]
 modules = [
-	{org = "ballerina", packageName = "jballerina.java.arrays", moduleName = "jballerina.java.arrays"}
+	{org = "ballerina", packageName = "lang.runtime", moduleName = "lang.runtime"}
 ]
 
 [[package]]
@@ -32,6 +68,20 @@ name = "observe"
 version = "1.3.0"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"}
+]
+
+[[package]]
+org = "ballerina"
+name = "test"
+version = "0.0.0"
+scope = "testOnly"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.array"},
+	{org = "ballerina", name = "lang.error"}
+]
+modules = [
+	{org = "ballerina", packageName = "test", moduleName = "test"}
 ]
 
 [[package]]
@@ -52,35 +102,11 @@ name = "selenium"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "jballerina.java.arrays"},
+	{org = "ballerina", name = "lang.runtime"},
+	{org = "ballerina", name = "test"},
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.chrome"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.edge"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.firefox"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.io"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.lang"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.net"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.nio.file"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.function"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.logging"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.java.util.stream"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.bidi"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.chromium"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.devtools"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.federatedcredentialmanagement"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.html5"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.logging"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.mobile"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.print"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote.http"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.remote.service"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.org.openqa.selenium.virtualauthenticator"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.safari"},
-	{org = "xlibb", packageName = "selenium", moduleName = "selenium.web"}
+	{org = "xlibb", packageName = "selenium", moduleName = "selenium"}
 ]
 

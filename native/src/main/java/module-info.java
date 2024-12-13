@@ -14,10 +14,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/io;
-
-public function getData() returns Data|error {
-    json inputs = check io:fileReadJson("modules/resources/data.json");
-    Data data = check inputs.cloneWithType();
-    return data;
+module io.xlibb.selenium {
+    requires io.ballerina.runtime;
+    requires io.ballerina.lang;
+    requires java.desktop;
+    requires org.seleniumhq.selenium.chrome_driver;
+    requires org.seleniumhq.selenium.firefox_driver;
+    exports io.xlibb.selenium;
 }

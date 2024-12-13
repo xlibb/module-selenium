@@ -5,8 +5,8 @@ name = "selenium"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = [] # TODO: Add keywords
-# icon = "icon.png" # TODO: Add icon
+keywords = ["selenium", "web-automation"]
+icon = "icon.png" 
 repository = "https://github.com/xlibb/module-selenium"
 
 [build-options]
@@ -14,3 +14,260 @@ observabilityIncluded = true
 
 [platform.java17]
 graalvmCompatible = true
+
+[[platform.java17.dependency]]
+groupId = "io.xlibb.selenium"
+artifactId = "selenium-native"
+version = "0.1.0"
+path = "../native/build/libs/selenium-native-0.1.0-SNAPSHOT.jar"
+
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-java"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-api"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-api:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.jspecify"
+artifactId = "jspecify"
+version = "1.0.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-chrome-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-chrome-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.auto.service"
+artifactId = "auto-service-annotations"
+version = "1.1.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-chrome-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-chromium-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-chrome-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-json"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-chrome-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-manager"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v129"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v130"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v131"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v85"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-edge-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-firefox-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-firefox-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-http"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-firefox-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "dev.failsafe"
+artifactId = "failsafe"
+version = "3.3.2"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-ie-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-remote-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.guava"
+artifactId = "guava"
+version = "33.3.1-jre"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.guava"
+artifactId = "failureaccess"
+version = "1.0.2"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.guava"
+artifactId = "listenablefuture"
+version = "9999.0-empty-to-avoid-conflict-with-guava"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.code.findbugs"
+artifactId = "jsr305"
+version = "3.0.2"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.checkerframework"
+artifactId = "checker-qual"
+version = "3.43.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.errorprone"
+artifactId = "error_prone_annotations"
+version = "2.28.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "com.google.j2objc"
+artifactId = "j2objc-annotations"
+version = "3.0.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry.semconv"
+artifactId = "opentelemetry-semconv"
+version = "1.25.0-alpha"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-api"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-context"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-exporter-logging"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk-common"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk-extension-autoconfigure-spi"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk-extension-autoconfigure"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-api-incubator"
+version = "1.44.1-alpha"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk-trace"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk-metrics"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "io.opentelemetry"
+artifactId = "opentelemetry-sdk-logs"
+version = "1.44.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "net.bytebuddy"
+artifactId = "byte-buddy"
+version = "1.15.10"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-os"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.apache.commons"
+artifactId = "commons-exec"
+version = "1.4.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-safari-driver"
+version = "4.27.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.27.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-support"
+version = "4.27.0"
