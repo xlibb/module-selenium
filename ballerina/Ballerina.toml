@@ -15,8 +15,8 @@ observabilityIncluded = true
 [platform.java17]
 graalvmCompatible = true
 
-# [[platform.java17.dependency]]
-# groupId = "io.ballerina.lib.selenium"
-# artifactId = "selenium-native"
-# version = "0.1.0"
-# path = "../native/build/libs/selenium-native-0.1.0-SNAPSHOT.jar"
+[[platform.java17.dependency]]
+groupId = "io.ballerina.lib.selenium"
+artifactId = "selenium-native"
+version = "0.1.0"
+path = "../native/build/libs/selenium-native-0.1.0-SNAPSHOT.jar"
