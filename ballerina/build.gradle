@@ -95,6 +95,8 @@ clean {
     delete 'build'
 }
 
+test.dependsOn ":${packageName}-native:build"
+build.dependsOn ":${packageName}-native:build"
 build.dependsOn "generatePomFileForMavenPublication"
 publishToMavenLocal.dependsOn build
 publish.dependsOn build

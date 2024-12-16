@@ -41,8 +41,10 @@ plugins {
 rootProject.name = 'module-selenium'
 
 include ':selenium-ballerina'
+include ':selenium-native'
 
 project(':selenium-ballerina').projectDir = file("ballerina")
+project(':selenium-native').projectDir = file("native")
 
 gradleEnterprise {
     buildScan {
