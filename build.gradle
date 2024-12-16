@@ -25,6 +25,7 @@ allprojects {
     version = project.version
 
     apply plugin: 'maven-publish'
+    apply plugin: 'jacoco'
 
     repositories {
         mavenLocal()
@@ -59,6 +60,20 @@ def moduleVersion = project.version.replace("-SNAPSHOT", "")
 
 task build {
     dependsOn(':selenium-ballerina:build')
+    dependsOn(':selenium-native:build')
+}
+
+subprojects {
+    configurations {
+        ballerinaStdLibs
+        jbalTools
+    }
+    dependencies {
+        jbalTools ("org.ballerinalang:jballerina-tools:${ballerinaLangVersion}") {
+            transitive = false
+        }
+
+    }
 }
 
 release {
