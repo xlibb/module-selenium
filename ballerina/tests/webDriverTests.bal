@@ -9,10 +9,10 @@ function testGetChromeDriver() returns error? {
     test:assertEquals(actualTitle, expectedTitle);
 }
 
-// @test:Config
-// function testFindById() returns error? {
-//     WebDriver driver = new();
-//     driver.getChromeDriver("https://central.ballerina.io/");
-//     WebElement element = driver.findById("downshift-search-bar-input");
-//     element.click();
-// }
+@test:Config
+function testFindById() returns error? {
+    WebDriver driver = new();
+    driver.getChromeDriver("https://central.ballerina.io/");
+    WebElement element = driver.findById("downshift-search-bar-input", element); // error: self referenced variable 'element'
+    element.click();
+}
