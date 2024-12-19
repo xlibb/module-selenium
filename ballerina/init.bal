@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com.
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -14,11 +14,12 @@
 // specific language governing permissions and limitations
 // under the License.
 
-module io.ballerina.lib.selenium {
-    requires io.ballerina.runtime;
-    requires io.ballerina.lang;
-    requires java.desktop;
-    requires org.seleniumhq.selenium.chrome_driver;
-    requires org.seleniumhq.selenium.firefox_driver;
-    exports io.ballerina.lib.selenium;
+import ballerina/jballerina.java;
+
+isolated function init() {
+    setModule();
 }
+
+isolated function setModule() = @java:Method {
+    'class: "io.ballerina.lib.selenium.utils.ModuleUtils"
+} external;

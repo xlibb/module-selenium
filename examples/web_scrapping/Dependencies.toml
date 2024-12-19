@@ -64,6 +64,20 @@ modules = [
 ]
 
 [[package]]
+org = "dharshi"
+name = "web_scrapping"
+version = "0.1.0"
+dependencies = [
+	{org = "ballerina", name = "io"},
+	{org = "ballerina", name = "lang.runtime"},
+	{org = "ballerinai", name = "observe"},
+	{org = "xlibb", name = "selenium"}
+]
+modules = [
+	{org = "dharshi", packageName = "web_scrapping", moduleName = "web_scrapping"}
+]
+
+[[package]]
 org = "xlibb"
 name = "selenium"
 version = "0.1.0"
@@ -73,20 +87,5 @@ dependencies = [
 ]
 modules = [
 	{org = "xlibb", packageName = "selenium", moduleName = "selenium"}
-]
-
-[[package]]
-org = "xlibb"
-name = "student_application_form_filling"
-version = "0.1.0"
-dependencies = [
-	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "lang.runtime"},
-	{org = "ballerinai", name = "observe"},
-	{org = "xlibb", name = "selenium"}
-]
-modules = [
-	{org = "xlibb", packageName = "student_application_form_filling", moduleName = "student_application_form_filling"},
-	{org = "xlibb", packageName = "student_application_form_filling", moduleName = "student_application_form_filling.resources"}
 ]
 

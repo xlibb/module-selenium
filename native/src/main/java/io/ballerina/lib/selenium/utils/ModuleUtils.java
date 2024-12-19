@@ -13,3 +13,24 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
+
+package io.ballerina.lib.selenium.utils;
+
+import io.ballerina.runtime.api.Environment;
+import io.ballerina.runtime.api.Module;
+
+public class ModuleUtils {
+
+    private static Module module;
+
+    private ModuleUtils() {
+    }
+
+    public static Module getModule() {
+        return module;
+    }
+
+    public static void setModule(Environment environment) {
+        module = environment.getCurrentModule();
+    }
+}

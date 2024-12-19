@@ -18,6 +18,9 @@
 
 plugins {
     id 'net.researchgate.release'
+    id "com.github.spotbugs-base"
+    id "com.github.johnrengelman.shadow"
+    id "de.undercouch.download"
 }
 
 allprojects {
@@ -59,6 +62,7 @@ allprojects {
 def moduleVersion = project.version.replace("-SNAPSHOT", "")
 
 task build {
+    dependsOn(':selenium-examples:build')
     dependsOn(':selenium-ballerina:build')
     dependsOn(':selenium-native:build')
 }
