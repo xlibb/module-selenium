@@ -25,6 +25,7 @@ public function main() returns error? {
 
     selenium:WebDriver driver = new();
     driver.openChrome("https://bal-selenium.choreoapps.dev/");
+    driver.maximize();
 
     runtime:sleep(2);
 
@@ -88,6 +89,7 @@ public function main() returns error? {
         (check driver.findById("designation")).sendKeys(item.designation);
         (check driver.findById("refree-address")).sendKeys(item.address);
         (check driver.findById("refree-mobile")).sendKeys(item.mobile);
+        (check driver.findById("add-refree")).click();
     }
 
     // submit button
