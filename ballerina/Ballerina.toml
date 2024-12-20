@@ -33,6 +33,60 @@ groupId = "com.google.auto.service"
 artifactId = "auto-service-annotations"
 version = "1.1.1"
 
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v127"
+version = "4.25.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v128"
+version = "4.25.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v129"
+version = "4.25.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-devtools-v85"
+version = "4.25.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-firefox-driver:4.25.0
+[[platform.java17.dependency]]
+groupId = "dev.failsafe"
+artifactId = "failsafe"
+version = "3.3.2"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-ie-driver"
+version = "4.25.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
+[[platform.java17.dependency]]
+groupId = "com.google.guava"
+artifactId = "guava"
+version = "33.3.0-jre"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
+[[platform.java17.dependency]]
+groupId = "com.google.guava"
+artifactId = "failureaccess"
+version = "1.0.2"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
+[[platform.java17.dependency]]
+groupId = "com.google.guava"
+artifactId = "listenablefuture"
+version = "9999.0-empty-to-avoid-conflict-with-guava"
+
 # transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
 [[platform.java17.dependency]]
 groupId = "com.google.code.findbugs"
@@ -59,9 +113,27 @@ version = "3.0.0"
 
 # transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
 [[platform.java17.dependency]]
+groupId = "net.bytebuddy"
+artifactId = "byte-buddy"
+version = "1.15.1"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-os"
+version = "4.25.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-remote-driver:4.25.0
+[[platform.java17.dependency]]
 groupId = "org.apache.commons"
 artifactId = "commons-exec"
 version = "1.4.0"
+
+# transitive dependency of org.seleniumhq.selenium:selenium-java:4.25.0
+[[platform.java17.dependency]]
+groupId = "org.seleniumhq.selenium"
+artifactId = "selenium-safari-driver"
+version = "4.25.0"
 
 [[platform.java17.dependency]]
 groupId = "org.seleniumhq.selenium"
