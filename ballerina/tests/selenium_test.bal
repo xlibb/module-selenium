@@ -17,111 +17,134 @@
 import ballerina/lang.runtime;
 import ballerina/test;
 
-@test:Config
-function testGetChromeDriver() returns error? {
-    WebDriver driver = new ();
-    driver.openChrome("https://central.ballerina.io/", ["--headless", "--disable-gpu"]);
-    string actualTitle = driver.getTitle();
-    string expectedTitle = "Ballerina Central";
+string url = "https://ballerina-ipa.choreoapps.dev";
+WebDriver driver = new ();
+
+@test:BeforeSuite
+function initializeDriver() returns error? {
+    driver.openChrome(url + "/complex-dom", true);
+    runtime:sleep(1);
+}
+
+@test:AfterSuite
+function quitDriver() returns error? {
     driver.quit();
+}
+
+@test:Config
+function testGetTitle() returns error? {
+    string actualTitle = driver.getTitle();
+    string expectedTitle = "Complex DOM";
     test:assertEquals(actualTitle, expectedTitle);
 }
 
 @test:Config
 function testGetCurrentUrl() returns error? {
-    WebDriver driver = new ();
-    driver.openChrome("https://central.ballerina.io/", ["--headless", "--disable-gpu"]);
     string actualValue = driver.getCurrentUrl();
-    string expectedValue = "https://central.ballerina.io/";
-    driver.quit();
+    string expectedValue = url + "/complex-dom";
     test:assertEquals(actualValue, expectedValue);
 }
 
 @test:Config
-function testFindBy() returns error? {
-    WebDriver driver = new ();
-    driver.openChrome("https://the-internet.herokuapp.com/challenging_dom", ["--headless", "--disable-gpu"]);
-    runtime:sleep(1);
-    WebElement findById = check driver.findById("page-footer");
-    string actualValue = findById.getTagName();
-    string expectedValue = "div";
+function testFindById() returns error? {
+    WebElement element = check driver.findById("main-heading");
+    string actualValue = element.getTagName();
+    string expectedValue = "h1";
     test:assertEquals(actualValue, expectedValue);
-    WebElement findByClassName = check driver.findByClassName("example");
-    actualValue = findByClassName.getTagName();
-    expectedValue = "div";
-    test:assertEquals(actualValue, expectedValue);
-    WebElement findByTagName = check driver.findByTagName("h3");
-    actualValue = findByTagName.getText();
-    expectedValue = "Challenging DOM";
-    test:assertEquals(actualValue, expectedValue);
-    WebElement[] findByLinkText = driver.findAllByLinkText("edit");
-    test:assertEquals(findByLinkText.length(), 10);
-    WebElement findByPartialLinkText = check driver.findByPartialLinkText("Selenium");
-    actualValue = findByPartialLinkText.getDomAttribute("href");
-    expectedValue = "http://elementalselenium.com/";
-    test:assertEquals(actualValue, expectedValue);
-    WebElement findByCssSelector = check driver.findByCssSelector("tr:nth-child(1) > td:nth-child(1)");
-    actualValue = findByCssSelector.getText();
-    expectedValue = "Iuvaret0";
-    test:assertEquals(actualValue, expectedValue);
-    WebElement findByXpath = check driver.findByXpath("//div[@id='content']/div/div/div/div/a[2]");
-    actualValue = findByXpath.getTagName();
-    expectedValue = "a";
-    test:assertEquals(actualValue, expectedValue);
-
-    driver.quit();
 }
 
 @test:Config
-function testAlert() returns error? {
-    WebDriver driver = new ();
-    driver.openChrome("https://the-internet.herokuapp.com/javascript_alerts", ["--headless", "--disable-gpu"]);
-    runtime:sleep(1);
-    WebElement element = check driver.findByCssSelector("li:nth-child(3) > button");
-    element.click();
-    check driver.sendKeysToAlert("Ballerina");
-    check driver.acceptAlert();
-    string actualValue = (check driver.findById("result")).getText();
-    string expectedValue = "You entered: Ballerina";
-    driver.quit();
+function testFindByClassName() returns error? {
+    WebElement element = check driver.findByClassName("nav-links");
+    string actualValue = element.getTagName();
+    string expectedValue = "ul";
+    test:assertEquals(actualValue, expectedValue);
+}
+
+@test:Config
+function testFindByTagName() returns error? {
+    WebElement element = check driver.findByTagName("h1");
+    string actualValue = element.getDomAttribute("id");
+    string expectedValue = "main-heading";
+    test:assertEquals(actualValue, expectedValue);
+}
+
+@test:Config
+function testFindByCssSelector() returns error? {
+    WebElement element = check driver.findByCssSelector(".nav-links > li:nth-child(1) > a");
+    string actualValue = element.getDomAttribute("href");
+    string expectedValue = "#home";
+    test:assertEquals(actualValue, expectedValue);
+}
+
+@test:Config
+function testFindByLinkText() returns error? {
+    WebElement element = check driver.findByLinkText("Home");
+    string actualValue = element.getDomAttribute("href");
+    string expectedValue = "#home";
     test:assertEquals(actualValue, expectedValue);
 }
 
 @test:Config
 function testNavigation() returns error? {
-    WebDriver driver = new ();
-    driver.openChrome("https://the-internet.herokuapp.com/", ["--headless", "--disable-gpu"]);
-    runtime:sleep(1);
-    driver.navigateTo("https://central.ballerina.io/");
+    driver.navigateTo(url + "/student-application");
     string actualValue = driver.getTitle();
-    string expectedValue = "Ballerina Central";
+    string expectedValue = "Student Application Form";
     test:assertEquals(actualValue, expectedValue);
     driver.navigateBack();
     actualValue = driver.getTitle();
-    expectedValue = "The Internet";
-    driver.navigateForward();
-    actualValue = driver.getTitle();
-    expectedValue = "Ballerina Central";
+    expectedValue = "Complex DOM";
     test:assertEquals(actualValue, expectedValue);
-    driver.quit();
+}
+
+@test:Config
+function testAlert() returns error? {
+    WebElement element = check driver.findById("home-button");
+    element.click();
+    check driver.acceptAlert();
+    string actualValue = element.getText();
+    string expectedValue = "Happy";
+    test:assertEquals(actualValue, expectedValue);
+    element.click();
+    check driver.dismissAlert();
+    actualValue = element.getText();
+    expectedValue = "Sad";
+    test:assertEquals(actualValue, expectedValue);
 }
 
 @test:Config
 function testWindowHandle() returns error? {
-    WebDriver driver = new ();
-    driver.openChrome("https://the-internet.herokuapp.com/windows", ["--headless", "--disable-gpu"]);
-    (check driver.findByPartialLinkText("Click")).click();
+    (check driver.findByPartialLinkText("Learn")).click();
     string firstWindow = driver.getCurrentWindowHandle();
     string[] allWindows = driver.getAllWindowHandles();
     test:assertEquals(allWindows.length(), 2);
     check driver.switchToWindowHandle(allWindows[1]);
+    runtime:sleep(1);
     string actualValue = driver.getTitle();
     string expectedValue = "New Window";
     test:assertEquals(actualValue, expectedValue);
     driver.closeCurrentWindowHandle();
     check driver.switchToWindowHandle(firstWindow);
     actualValue = driver.getTitle();
-    expectedValue = "The Internet";
+    expectedValue = "Complex DOM";
     test:assertEquals(actualValue, expectedValue);
-    driver.quit();
+}
+
+@test:Config
+function testSendKeys() returns error? {
+    WebElement form = check driver.findById("contact-form");
+    (check form.findById("email")).sendKeys("john@abc.com");
+    (check form.findById("message")).sendKeys("Hello");
+    (check form.findByTagName("button")).click();
+    string actualValue = (check form.findById("result")).getText();
+    string expectedValue = "You typed: john@abc.com Hello";
+    test:assertEquals(actualValue, expectedValue);
+}
+
+@test:Config
+function testJsExecutor() returns error? {
+    driver.executeJavascript("document.getElementById('home-button').innerText = 'Happy'");
+    string actualValue = (check driver.findById("home-button")).getText();
+    string expectedValue = "Happy";
+    test:assertEquals(actualValue, expectedValue);
 }

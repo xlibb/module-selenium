@@ -25,6 +25,7 @@ import io.ballerina.runtime.api.values.BObject;
 import io.ballerina.runtime.api.values.BString;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,22 +38,23 @@ import java.util.Set;
 
 public class SeleniumWebDriver {
 
-    public static void openChrome(BObject webDriver, BString url, BArray options) {
+    public static void openChrome(BObject webDriver, BString url, boolean headless) {
         if (Utils.getDriverNObject(webDriver) == null) {
             ChromeOptions chromeOptions = new ChromeOptions();
-            for (String option: options.getStringArray()) {
-                chromeOptions.addArguments(option);
+            if (headless) {
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--disable-gpu");
             }
             webDriver.addNativeData(Constants.DRIVER_OBJECT, new ChromeDriver(chromeOptions));
             Utils.getDriverNObject(webDriver).get(url.toString());
         }
     }
 
-    public static void openFirefox(BObject webDriver, BString url, BArray options) {
+    public static void openFirefox(BObject webDriver, BString url, boolean headless) {
         if (Utils.getDriverNObject(webDriver) == null) {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
-            for (String option: options.getStringArray()) {
-                firefoxOptions.addArguments(option);
+            if (headless) {
+                firefoxOptions.addArguments("--headless");
             }
             webDriver.addNativeData(Constants.DRIVER_OBJECT, new FirefoxDriver(firefoxOptions));
             Utils.getDriverNObject(webDriver).get(url.toString());
@@ -263,6 +265,12 @@ public class SeleniumWebDriver {
         if (driver.getWindowHandles().size() > 1) {
             Utils.getDriverNObject(webDriver).close();
         }
+    }
+
+    public static void executeJavascript(BObject webDriver, BString script) {
+        WebDriver driver = Utils.getDriverNObject(webDriver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(script.toString());
     }
 
     public static void quit(BObject webDriver) {

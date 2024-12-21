@@ -20,16 +20,16 @@ public class WebDriver {
     # Opens a new Chrome browser instance and navigates to the specified URL.
     #
     # + url - The URL of the web application to open in the browser.
-    # + options - An optional array of strings specifying additional browser options, such as arguments or configurations for the Chrome instance (e.g., "--headless", "--disable-gpu").
-    public isolated function openChrome(string url, string[] options = []) = @java:Method {
+    # + headless - A boolean value indicating whether to run the browser in headless mode (without a GUI).
+    public isolated function openChrome(string url, boolean headless = false) = @java:Method {
         'class: "io.ballerina.lib.selenium.SeleniumWebDriver"
     } external;
 
     # Opens a new Firefox browser instance and navigates to the specified URL.
     #
     # + url - The URL of the web application to open in the browser.
-    # + options - An optional array of strings specifying additional browser options, such as arguments or configurations for the Firefox instance (e.g., "--headless").
-    public isolated function openFirefox(string url, string[] options = []) = @java:Method {
+    # + headless - A boolean value indicating whether to run the browser in headless mode (without a GUI).
+    public isolated function openFirefox(string url, boolean headless = false) = @java:Method {
         'class: "io.ballerina.lib.selenium.SeleniumWebDriver"
     } external;
 
@@ -267,6 +267,13 @@ public class WebDriver {
     #
     # This method closes the window that is currently in focus. If there are multiple windows open, the other windows will remain open.
     public isolated function closeCurrentWindowHandle() = @java:Method {
+        'class: "io.ballerina.lib.selenium.SeleniumWebDriver"
+    } external;
+
+    # Executes a JavaScript script on the current page in the Selenium WebDriver session.
+    # 
+    # + script - The JavaScript script to execute.
+    public isolated function executeJavascript(string script) = @java:Method {
         'class: "io.ballerina.lib.selenium.SeleniumWebDriver"
     } external;
 
