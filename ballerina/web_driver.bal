@@ -16,7 +16,7 @@
 
 import ballerina/jballerina.java;
 
-type Browser "chrome" | "firefox";
+type Browser "chrome"|"firefox";
 
 # Represents the options for configuring the WebDriver instance.
 #
@@ -71,14 +71,14 @@ public class WebDriver {
     } external;
 
     # Maximizes the browser window to fill the screen.
-    # 
+    #
     # + return - Returns `()` if the operation is successful, otherwise an `Error`.
     public isolated function maximize() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 
     # Minimizes the browser window.
-    # 
+    #
     # + return - Returns `()` if the operation is successful, otherwise an `Error`.
     public isolated function minimize() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
@@ -97,26 +97,26 @@ public class WebDriver {
     #
     # + url - The URL to navigate to.
     # + return - Returns `()` if the operation is successful, otherwise an `Error`.
-    public isolated function navigateTo(string url)  returns Error? = @java:Method {
+    public isolated function navigateTo(string url) returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 
     # Navigates the browser back to the previous page in the browsing history.
-    # 
+    #
     # + return - Returns `()` if the operation is successful, otherwise an `Error`.
     public isolated function navigateBack() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 
     # Navigates the browser forward to the next page in the browsing history (if available).
-    # 
+    #
     # + return - Returns `()` if the operation is successful, otherwise an `Error`.
     public isolated function navigateForward() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 
     # Refreshes the current web page in the browser.
-    # 
+    #
     # + return - Returns `()` if the operation is successful, otherwise an `Error`.
     public isolated function refresh() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
@@ -308,7 +308,7 @@ public class WebDriver {
     # Closes the currently active browser window.
     #
     # This method closes the window that is currently in focus. If there are multiple windows open, the other windows will remain open.
-    # 
+    #
     # + return - Returns `()` if the window is closed successfully, otherwise an `Error`.
     public isolated function closeCurrentWindowHandle() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
@@ -325,7 +325,7 @@ public class WebDriver {
     # Quits the browser session and closes all open browser windows.
     #
     # This method ends the current WebDriver session and closes all associated browser windows.
-    # 
+    #
     # + return - Returns `()` if the session is closed successfully, otherwise an `Error`.
     public isolated function quit() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"

@@ -19,14 +19,14 @@ import ballerina/jballerina.java;
 public class WebElement {
 
     # Performs a click action on the specified web element.
-    # 
+    #
     # + return - Returns `()` if the click action is successful, otherwise an `Error`.
     public isolated function click() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
 
     # Clears the value of an input field or text area.
-    # 
+    #
     # + return - Returns `()` if the clear action is successful, otherwise an `Error`.
     public isolated function clear() returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
