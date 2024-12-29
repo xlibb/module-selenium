@@ -16,84 +16,157 @@
 
 import ballerina/io;
 import ballerina/lang.runtime;
-
 import xlibb/selenium;
 
 public function main() returns error? {
 
     Data data = check getData();
 
-    selenium:WebDriver driver = new ();
-    driver.openChrome("https://ballerina-ipa.choreoapps.dev/student-application");
-    driver.maximize();
+    selenium:WebDriver driver = check new ({
+        url: "https://ballerina-ipa.choreoapps.dev/student-application"
+    });
+
+    check driver.maximize();
 
     runtime:sleep(2);
+    
+    // 1. Personal details
+    selenium:WebElement fullNameElement = check driver.findById("fullName");
+    check fullNameElement.sendKeys(data.fullName);
 
-    (check driver.findById("fullName")).sendKeys(data.fullName);
-    (check driver.findById("nameWithInitials")).sendKeys(data.nameWithInitials);
-    (check driver.findById("dob")).sendKeys(data.dob);
-    (check driver.findById("age")).sendKeys(data.age);
-    (check driver.findById("nationality")).sendKeys(data.nationality);
-    (check driver.findById(data.gender)).click();
-    (check driver.findById("address")).sendKeys(data.address);
-    (check driver.findById("mobile")).sendKeys(data.mobile);
-    (check driver.findById("district")).sendKeys(data.district);
-    (check driver.findById("gramaSevaka")).sendKeys(data.gramaSevaka);
-    (check driver.findById("nic")).sendKeys(data.nic ?: "");
-    (check driver.findById("passport")).sendKeys(data.passport ?: "");
+    selenium:WebElement nameWithInitialsElement = check driver.findById("nameWithInitials");
+    check nameWithInitialsElement.sendKeys(data.nameWithInitials);
+
+    selenium:WebElement dobElement = check driver.findById("dob");
+    check dobElement.sendKeys(data.dob);
+
+    selenium:WebElement ageElement = check driver.findById("age");
+    check ageElement.sendKeys(data.age);
+
+    selenium:WebElement nationalityElement = check driver.findById("nationality");
+    check nationalityElement.sendKeys(data.nationality);
+
+    selenium:WebElement genderElement = check driver.findById(data.gender);
+    check genderElement.click();
+
+    selenium:WebElement addressElement = check driver.findById("address");
+    check addressElement.sendKeys(data.address);
+
+    selenium:WebElement mobileElement = check driver.findById("mobile");
+    check mobileElement.sendKeys(data.mobile);
+
+    selenium:WebElement districtElement = check driver.findById("district");
+    check districtElement.sendKeys(data.district);
+
+    selenium:WebElement gramaSevakaElement = check driver.findById("gramaSevaka");
+    check gramaSevakaElement.sendKeys(data.gramaSevaka);
+
+    selenium:WebElement nicElement = check driver.findById("nic");
+    check nicElement.sendKeys(data.nic ?: "");
+
+    selenium:WebElement passportElement = check driver.findById("passport");
+    check passportElement.sendKeys(data.passport ?: "");
 
     // 2. Emergency contact
-    (check driver.findById("emer-name")).sendKeys(data.emergency.name);
-    (check driver.findById("emer-address")).sendKeys(data.emergency.address);
-    (check driver.findById("emer-mobile")).sendKeys(data.emergency.mobile);
-    (check driver.findById("relationship")).sendKeys(data.emergency.relationship);
-    (check driver.findById("emer-email")).sendKeys(data.emergency.email);
+    selenium:WebElement emerNameElement = check driver.findById("emer-name");
+    check emerNameElement.sendKeys(data.emergency.name);
+
+    selenium:WebElement emerAddressElement = check driver.findById("emer-address");
+    check emerAddressElement.sendKeys(data.emergency.address);
+
+    selenium:WebElement emerMobileElement = check driver.findById("emer-mobile");
+    check emerMobileElement.sendKeys(data.emergency.mobile);
+
+    selenium:WebElement relationshipElement = check driver.findById("relationship");
+    check relationshipElement.sendKeys(data.emergency.relationship);
+
+    selenium:WebElement emerEmailElement = check driver.findById("emer-email");
+    check emerEmailElement.sendKeys(data.emergency.email);
 
     // 3. O/L results
-    (check driver.findById("ol-school")).sendKeys(data.olResults.school);
-    (check driver.findById("ol-year")).sendKeys(data.olResults.year);
-    (check driver.findById("ol-index")).sendKeys(data.olResults.index);
+    selenium:WebElement olSchoolElement = check driver.findById("ol-school");
+    check olSchoolElement.sendKeys(data.olResults.school);
+
+    selenium:WebElement olYearElement = check driver.findById("ol-year");
+    check olYearElement.sendKeys(data.olResults.year);
+
+    selenium:WebElement olIndexElement = check driver.findById("ol-index");
+    check olIndexElement.sendKeys(data.olResults.index);
+
+    selenium:WebElement olSubjectElement = check driver.findById("ol-subject");
+    selenium:WebElement olGradeElement = check driver.findById("ol-grade");
+    selenium:WebElement addOlResultElement = check driver.findById("add-ol-result");
+
     foreach ResultsItem item in data.olResults.results {
-        (check driver.findById("ol-subject")).sendKeys(item.subject);
-        (check driver.findById("ol-grade")).sendKeys(item.grade);
-        (check driver.findById("add-ol-result")).click();
+        check olSubjectElement.sendKeys(item.subject);
+        check olGradeElement.sendKeys(item.grade);
+        check addOlResultElement.click();
     }
 
     // 4. A/L results
-    (check driver.findById("al-school")).sendKeys(data.alResults.school);
-    (check driver.findById("al-year")).sendKeys(data.alResults.year);
-    (check driver.findById("al-index")).sendKeys(data.alResults.index);
-    (check driver.findById("zScore")).sendKeys(data.alResults.zScore);
+    selenium:WebElement alSchoolElement = check driver.findById("al-school");
+    check alSchoolElement.sendKeys(data.alResults.school);
+
+    selenium:WebElement alYearElement = check driver.findById("al-year");
+    check alYearElement.sendKeys(data.alResults.year);
+
+    selenium:WebElement alIndexElement = check driver.findById("al-index");
+    check alIndexElement.sendKeys(data.alResults.index);
+
+    selenium:WebElement zScoreElement = check driver.findById("zScore");
+    check zScoreElement.sendKeys(data.alResults.zScore);
+
+    selenium:WebElement alSubjectElement = check driver.findById("al-subject");
+    selenium:WebElement alGradeElement = check driver.findById("al-grade");
+    selenium:WebElement addAlResultElement = check driver.findById("add-al-result");
     foreach ResultsItem item in data.alResults.results {
-        (check driver.findById("al-subject")).sendKeys(item.subject);
-        (check driver.findById("al-grade")).sendKeys(item.grade);
-        (check driver.findById("add-al-result")).click();
+        check alSubjectElement.sendKeys(item.subject);
+        check alGradeElement.sendKeys(item.grade);
+        check addAlResultElement.click();
     }
 
     // 5. Other qualifications
+    selenium:WebElement courseElement = check driver.findById("course");
+    selenium:WebElement nvqElement = check driver.findById("nvq");
+    selenium:WebElement instituteElement = check driver.findById("institute");
+    selenium:WebElement nvqYearElement = check driver.findById("nvq-year");
+    selenium:WebElement nvqResultElement = check driver.findById("nvq-result");
+    selenium:WebElement addNvqResultElement = check driver.findById("add-nvq-result");
+
     foreach OtherQualificationsItem item in data.otherQualifications {
-        (check driver.findById("course")).sendKeys(item.course);
-        (check driver.findById("nvq")).sendKeys(item.nvqLevel);
-        (check driver.findById("institute")).sendKeys(item.institute);
-        (check driver.findById("nvq-year")).sendKeys(item.year);
-        (check driver.findById("nvq-result")).sendKeys(item.result);
-        (check driver.findById("add-nvq-result")).click();
+        check courseElement.sendKeys(item.course);
+        check nvqElement.sendKeys(item.nvqLevel);
+        check instituteElement.sendKeys(item.institute);
+        check nvqYearElement.sendKeys(item.year);
+        check nvqResultElement.sendKeys(item.result);
+        check addNvqResultElement.click();
     }
 
     // 6. Extra curricular activities
-    (check driver.findById("extra-activities")).sendKeys(data.extraCurricularActivities);
+    selenium:WebElement extraActivitiesElement = check driver.findById("extra-activities");
+    check extraActivitiesElement.sendKeys(data.extraCurricularActivities);
 
     // 7. References
+    selenium:WebElement refreeNameElement = check driver.findById("refree-name");
+    selenium:WebElement designationElement = check driver.findById("designation");
+    selenium:WebElement refreeAddressElement = check driver.findById("refree-address");
+    selenium:WebElement refreeMobileElement = check driver.findById("refree-mobile");
+    selenium:WebElement addRefreeElement = check driver.findById("add-refree");
+
     foreach RefreesItem item in data.refrees {
-        (check driver.findById("refree-name")).sendKeys(item.name);
-        (check driver.findById("designation")).sendKeys(item.designation);
-        (check driver.findById("refree-address")).sendKeys(item.address);
-        (check driver.findById("refree-mobile")).sendKeys(item.mobile);
-        (check driver.findById("add-refree")).click();
+        check refreeNameElement.sendKeys(item.name);
+        check designationElement.sendKeys(item.designation);
+        check refreeAddressElement.sendKeys(item.address);
+        check refreeMobileElement.sendKeys(item.mobile);
+        check addRefreeElement.click();
     }
 
     // submit button
-    (check driver.findById("submit")).click();
+    selenium:WebElement submitButtonElement = check driver.findById("submit");
+    check submitButtonElement.click();
+
+    // close the browser
+    check driver.quit();
 
     io:println("Data entered successfully!");
 

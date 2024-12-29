@@ -4,42 +4,50 @@ This module automates web applications across various browsers. Selenium interac
 
 ## Quickstart
 
-### Web driver
-
-The core component of Selenium is the WebDriver. It is an interface for controlling a web browser instance and communicates with the browser through its native API.
+### Import the module
 
 ```ballerina
 import xlibb/selenium;
+```
 
-public function main() {
+### Create a new web driver instance
 
-    selenium:WebDriver driver = new ();
+The core component of Selenium is the `WebDriver`. It is an interface for controlling a web browser instance and communicates with the browser through its native API.
 
-    // Opens a new Chrome browser instance and navigates to the specified URL.
-    driver.openChrome("https://central.ballerina.io/");
-}
+The constructor of the `WebDriver` takes `BrowserOptions` as an argument, which contains the following options:
+
+1. `browserName` - Specifies the type of browser to open. Acceptable values are "chrome" or "firefox". The default is "chrome".
+2. `url` - The URL of the web application to open in the browser.
+3. `headlessMode` - A boolean value indicating whether to run the browser in headless mode (without a GUI). The default is `false`.
+4. `incognitoMode` - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
+
+```ballerina
+// Opens a new Chrome browser instance and navigates to the specified URL.
+selenium:WebDriver driver = new ({
+    url: "https://central.ballerina.io/"
+});
 ```
 
 ### Locating elements
 
-A locator is a way to identify elements on a page. Selenium provides support for several location strategies in WebDriver, such as class name, ID, CSS selector, name, tag name, and XPath. 
+`WebElement` in selenium represents an element in the DOM, which allows interaction (e.g., click, send keys).
 
-`WebElement` class: Represents an element in the DOM; allows interaction (e.g., click, send keys).
+A locator is a way to identify `WebElement` on a page. Selenium provides support for several location strategies(locators) in WebDriver:
 
-```html
-<form id="form">
-    <label for="search" class="input-label">Search:</label>
-    <input type="text" name="q" class="search-box" placeholder="Type something...">
-    <button type="submit" class="submit-btn">Submit</button>
-</form>
-```
+- **class name**: Locates elements by the value of their `class` attribute.
+- **ID**: Locates elements by the value of their `id` attribute.
+- **CSS selector**: Locates elements using CSS selectors, which are patterns used to select elements based on their attributes.
+- **name**: Locates elements by the value of their `name` attribute.
+- **tag name**: Locates elements by their tag name, such as `input`, `div`, etc.
+- **XPath**: Locates elements using XPath expressions, which are used to navigate through elements and attributes in an XML document.
+- **link text**: Locates anchor elements by the exact text they display.
+- **partial link text**: Locates anchor elements by a partial match of the text they display.
 
 ```ballerina
 import xlibb/selenium;
 import ballerina/io;
 
 public function main() {
-
     // By ID
     selenium:WebElement form = check driver.findById("form"); 
 
@@ -67,56 +75,60 @@ public function main() {
 
 ```
 
-### Fetching data over any web element
+### Fetching data over any `WebElement`
 
-To fetch data from a web element in Selenium, you can interact with it using various methods depending on the type of data you need. 
+To fetch data from a `WebElement` in Selenium, you can interact with it using various methods depending on the type of data you need. 
 
-1. Text of an element (e.g., a paragraph or label):
+1. Text of an element:
+
+The `getText()` method in Selenium is used to retrieve the visible (i.e., not hidden by CSS) inner text of a `WebElement`. This method is commonly used to extract text from elements such as paragraphs, headings, labels, or any other HTML elements that contain text.
 
 ```ballerina
 selenium:WebElement label = check driver.findByClassName("input-label");
-string labelText = label.getText();
+string labelText = check label.getText();
 io:println(labelText); 
 ```
 
-2. Attribute value (e.g., value of an input field or the href attribute of a link):
+2. Attribute value
+
+The `getDomAttribute` method in Selenium is used to retrieve the value of a specified attribute from a `WebElement`. This method is particularly useful when you need to access the underlying attributes of an element in the DOM (Document Object Model) that are not directly visible on the page. Commonly used to get attributes like value for input fields, href for links, src for images, etc.
 
 ```ballerina
 string value = (check driver.findElementById("elementId")).getDomAttribute("value"); // For input fields
 string href = (check driver.findElementByTagName("a")).getDomAttribute("href"); // For links
 ```
 
-
 3. Checking if an element is displayed/enabled/selected:
 
 ```ballerina
 selenium:WebElement element = check driver.findById("elementId");
-boolean isDisplayed = element.isDisplayed();
-boolean isEnabled = element.isEnabled();
-boolean isSelected = element.isSelected();
+boolean isDisplayed = check element.isDisplayed();
+boolean isEnabled = check element.isEnabled();
+boolean isSelected = check element.isSelected();
 ```
 
+### Sending user inputs to `WebElement`
 
-### Sending user inputs to web element
-
-To send user inputs to web elements, you can use the `sendKeys()` method, which simulates typing into text-based input fields (like textboxes, textareas, etc.).
+To send user inputs to `WebElement`s, you can use the `sendKeys()` method, which simulates typing into text-based input fields (like textboxes, textareas, etc.).
 
 ```ballerina
-(check driver.findByClassName("search-box")).sendKeys("ballerina");
+selenium:WebElement element = check driver.findByName("email");
+check element.sendKeys("exmaple@abc.com");
 ```
 
 ### Performing Click event
 
-To perform a click event on a web element, you can use the `click()` method on the WebElement object. This is commonly used to simulate clicking on buttons, links, checkboxes, radio buttons, or any other clickable elements.
+To perform a click event on a `WebElement`, you can use the `click()` method on the `WebElement` object. This is commonly used to simulate clicking on buttons, links, checkboxes, radio buttons, or any other clickable elements.
 
 ```ballerina
-(check driver.findByClassName("submit-btn")).click();
+selenium:WebElement element = check driver.findByClassName("submit-btn");
+check element.click();
 ```
 
-### Closing the browser
+### Quit the driver
 
 ```ballerina
-driver.quit();
+check driver.quit();
 ```
 
 ### Working with windows and tabs
@@ -125,31 +137,31 @@ driver.quit();
 
 ```ballerina
 // Initialize a new WebDriver instance
-selenium:WebDriver driver = new ();
-
-// Open the specified URL in Chrome.
-driver.openChrome("https://the-internet.herokuapp.com/windows");
+selenium:WebDriver driver = new ({
+    url: "https://the-internet.herokuapp.com/windows"
+});
 
 // Print the title of the current window.
 io:println(driver.getTitle()); // Prints "The Internet"
 
 // Store the current window handle.
-string firstWindow = driver.getCurrentWindowHandle();
+string firstWindow = check driver.getCurrentWindowHandle();
 
-// Click on the link that opens a new window.
-(check driver.findByPartialLinkText("Click")).click();
+// Click on the link that opens a new window/tab.
+check (check driver.findByPartialLinkText("Click")).click();
 
-// Get handles for all open windows.
-string[] allWindows = driver.getAllWindowHandles();
+// Get handles for all open windows. Currently, there are 2 windows open, 
+// so this array contains the handles of those 2 windows in the order they were opened.
+string[] allWindows = check driver.getAllWindowHandles();
 
-// Switch to the second window. Now the driver is pointing to the new window.
+// Even though we opened a new window, the driver is still pointing to the first window. To interact with the new window, we need to switch to it using the window handle.
 check driver.switchToWindowHandle(allWindows[1]);
 
 // Print the title of the currrent window.
 io:println(driver.getTitle()); // Prints "New Window"
 
 // Close the second (current) window.
-driver.closeCurrentWindowHandle();
+check driver.closeCurrentWindowHandle();
 
 // Switch back to the first window. Now the driver is pointing to the first window.
 check driver.switchToWindowHandle(firstWindow);
@@ -158,8 +170,7 @@ check driver.switchToWindowHandle(firstWindow);
 io:println(driver.getTitle()); // Prints "The Internet"
 
 // Quit the driver and close all windows
-driver.quit();
-
+check driver.quit();
 ```
 
 ### Selenium IDE for Finding Locators

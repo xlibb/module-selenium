@@ -21,40 +21,43 @@ import xlibb/selenium;
 
 public function main() returns error? {
 
-    selenium:WebDriver driver = new ();
-    driver.openChrome("http://books.toscrape.com/");
-    driver.maximize();
+    selenium:WebDriver driver = check new ({
+        url: "http://books.toscrape.com/"
+    });
+    check driver.maximize();
     runtime:sleep(2);
 
     string category = "Science";
     selenium:WebElement|error categoryLink = driver.findByPartialLinkText(category);
     if (categoryLink is error) {
         io:println(`Invalid category name: ${category}`);
-        driver.quit();
+        check driver.quit();
         return;
     }
-    categoryLink.click();
+    check categoryLink.click();
     runtime:sleep(2);
 
-    selenium:WebElement[] results = driver.findAllByClassName("product_pod");
+    selenium:WebElement[] results = check driver.findAllByClassName("product_pod");
     if (results.length() == 0) {
         io:println("No results found for category " + category);
     }
+    int count = 0;
     foreach selenium:WebElement result in results {
+        count = count + 1;
         selenium:WebElement itemPageLink = check result.findByCssSelector("h3 > a");
-        itemPageLink.click();
+        check itemPageLink.click();
         runtime:sleep(1);
 
         selenium:WebElement itemContent = check driver.findByClassName("product_main");
-        string bookName = (check itemContent.findByTagName("h1")).getText();
-        string price = (check itemContent.findByClassName("price_color")).getText();
-        string availability = (check itemContent.findByClassName("availability")).getText();
+        string bookName = check (check itemContent.findByTagName("h1")).getText();
+        string price = check (check itemContent.findByClassName("price_color")).getText();
+        string availability = check (check itemContent.findByClassName("availability")).getText();
 
-        io:println(string `Name: ${bookName}, Price: ${price}, Availability: ${availability}` + "\n");
-        driver.navigateBack();
+        io:println(string `${count}. Name: ${bookName}, Price: ${price}, Availability: ${availability}` + "\n");
+        check driver.navigateBack();
         runtime:sleep(1);
     }
 
-    driver.quit();
+    check driver.quit();
 
 }
