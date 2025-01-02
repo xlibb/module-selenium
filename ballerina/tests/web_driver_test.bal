@@ -17,15 +17,15 @@
 import ballerina/lang.runtime;
 import ballerina/test;
 
-string url = "https://ballerina-ipa.choreoapps.dev";
+string baseUrl = "https://ballerina-ipa.choreoapps.dev";
 WebDriver chromeDriver = check new ({
     headlessMode: true,
-    url: url + "/complex-dom",
+    url: baseUrl + "/complex-dom",
     browserName: "chrome"
 });
 WebDriver firefoxDriver = check new ({
     headlessMode: true,
-    url: url + "/complex-dom",
+    url: baseUrl + "/complex-dom",
     browserName: "firefox"
 });
 
@@ -33,7 +33,7 @@ WebDriver firefoxDriver = check new ({
 function testInvalidURL() {
     WebDriver|error driver = new ({
         headlessMode: true,
-        url: "invalid-url",
+        url: "invalid-baseUrl",
         browserName: "chrome"
     });
     test:assertTrue(driver is error, "Expected error not thrown");
@@ -55,7 +55,7 @@ function testGetTitle(WebDriver driver) {
 }
 function testGetCurrentUrl(WebDriver driver) {
     string|Error actualValue = driver.getCurrentUrl();
-    string expectedValue = url + "/complex-dom";
+    string expectedValue = baseUrl + "/complex-dom";
     test:assertEquals(actualValue, expectedValue, "Current URL mismatched");
 }
 
@@ -64,7 +64,7 @@ function testGetCurrentUrl(WebDriver driver) {
     dataProvider: driverProvider
 }
 function testNavigation(WebDriver driver) {
-    Error? navigationErr = driver.navigateTo(url + "/student-application");
+    Error? navigationErr = driver.navigateTo(baseUrl + "/student-application");
     if navigationErr is error {
         test:assertFail(navigationErr.message());
     }
