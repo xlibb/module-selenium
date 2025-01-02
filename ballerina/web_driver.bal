@@ -16,21 +16,6 @@
 
 import ballerina/jballerina.java;
 
-type Browser "chrome"|"firefox";
-
-# Represents the options for configuring the WebDriver instance.
-#
-# + browserName - The type of browser to open (either "chrome" or "firefox"). The default is "chrome".
-# + url - The URL of the web application to open in the browser.  
-# + headlessMode - A boolean value indicating whether to run the browser in headless mode (without a GUI). The default is `false`.
-# + incognitoMode - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
-public type BrowserOptions record {
-    string browserName = "chrome";
-    string url;
-    boolean headlessMode = false;
-    boolean incognitoMode = false;
-};
-
 public class WebDriver {
 
     public isolated function init(BrowserOptions options) returns error? {

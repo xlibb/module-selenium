@@ -30,16 +30,6 @@ WebDriver firefoxDriver = check new ({
 });
 
 @test:Config
-function testInvalidBrowserName() {
-    WebDriver|error driver = new ({
-        headlessMode: true,
-        url: url + "/complex-dom",
-        browserName: "invalid-browser"
-    });
-    test:assertTrue(driver is error, "Expected error not thrown");
-}
-
-@test:Config
 function testInvalidURL() {
     WebDriver|error driver = new ({
         headlessMode: true,
@@ -50,7 +40,7 @@ function testInvalidURL() {
 }
 
 @test:Config {
-    dependsOn: [testInvalidURL, testInvalidBrowserName],
+    dependsOn: [testInvalidURL],
     dataProvider: driverProvider
 }
 function testGetTitle(WebDriver driver) {
