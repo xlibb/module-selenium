@@ -1,4 +1,4 @@
-# Automating the Filling of Student Application Form.
+# Automating the Filling of Student Application Form
 
 ## Overview
 This guide demonstrates automating the process of filling out student application forms using the Ballerina Selenium module.

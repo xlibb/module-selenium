@@ -18,21 +18,16 @@ import ballerina/lang.runtime;
 import ballerina/test;
 
 string url = "https://ballerina-ipa.choreoapps.dev";
-// string url = "http://localhost:5173";
 WebDriver chromeDriver = check new ({
-    headlessMode: false,
+    headlessMode: true,
     url: url + "/complex-dom",
     browserName: "chrome"
 });
 WebDriver firefoxDriver = check new ({
-    headlessMode: false,
+    headlessMode: true,
     url: url + "/complex-dom",
     browserName: "firefox"
 });
-
-function driverProvider() returns WebDriver[][] {
-    return [[chromeDriver], [firefoxDriver]];
-}
 
 @test:Config
 function testInvalidBrowserName() {
@@ -498,4 +493,8 @@ function validateFindAll(WebElement[]|Error elements, int expectedCount) {
     } else {
         test:assertEquals(elements.length(), expectedCount, "Element count mismatched");
     }
+}
+
+function driverProvider() returns WebDriver[][] {
+    return [[chromeDriver], [firefoxDriver]];
 }
