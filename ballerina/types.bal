@@ -20,9 +20,9 @@
 # + url - The URL of the web application to open in the browser.  
 # + headlessMode - A boolean value indicating whether to run the browser in headless mode (without a GUI). The default is `false`.
 # + incognitoMode - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
-public type BrowserOptions record {
+public type BrowserOptions record {|
     "chrome"|"firefox" browserName = "chrome";
     string url;
     boolean headlessMode = false;
     boolean incognitoMode = false;
-};
+|};
