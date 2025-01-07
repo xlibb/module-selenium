@@ -14,17 +14,27 @@
 // specific language governing permissions and limitations
 // under the License.
 
+// replace with match ifelse in init
+// create seperate classes for errors
+// make browser options closed ---------------------------------------------------------- done
+// introduce additional arguments in browser options ------------------------------------ done
+// pass brpwser options record itself for the native ------------------------------------ done
+// check disable gpu
+// update build.gradle for libs instead connectors for both sel and si
+// update workflows for both sel and si
+
 import ballerina/jballerina.java;
 
 public class WebDriver {
 
     public isolated function init(BrowserOptions options) returns error? {
-        if (options.browserName == "chrome") {
-            check self.openChrome(options);
-        } else if (options.browserName == "firefox") {
-            check self.openFirefox(options);
-        } else {
-            return error("Invalid browser type. Supported browsers are 'chrome' and 'firefox'.");
+        match options.browserName {
+            "chrome" => {
+                return check self.openChrome(options);
+            }
+            "firefox" => {
+                return check self.openFirefox(options);
+            }
         }
     }
 
