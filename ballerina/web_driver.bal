@@ -14,14 +14,15 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// replace with match ifelse in init
+// replace with match ifelse in init ---------------------------------------------------- done
 // create seperate classes for errors
 // make browser options closed ---------------------------------------------------------- done
 // introduce additional arguments in browser options ------------------------------------ done
 // pass brpwser options record itself for the native ------------------------------------ done
 // check disable gpu
-// update build.gradle for libs instead connectors for both sel and si
-// update workflows for both sel and si
+// update build.gradle for libs instead connectors -------------------------------------- done
+// update workflows --------------------------------------------------------------------- done
+// enums for browser names
 
 import ballerina/jballerina.java;
 
