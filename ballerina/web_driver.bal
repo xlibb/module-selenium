@@ -20,9 +20,9 @@ public class WebDriver {
 
     public isolated function init(BrowserOptions options) returns error? {
         if (options.browserName == "chrome") {
-            check self.openChrome(options.url, options.headlessMode, options.incognitoMode);
+            check self.openChrome(options);
         } else if (options.browserName == "firefox") {
-            check self.openFirefox(options.url, options.headlessMode, options.incognitoMode);
+            check self.openFirefox(options);
         } else {
             return error("Invalid browser type. Supported browsers are 'chrome' and 'firefox'.");
         }
@@ -30,21 +30,17 @@ public class WebDriver {
 
     # Opens a new Chrome browser instance and navigates to the specified URL.
     #
-    # + url - The URL of the web application to open in the browser.
-    # + headless - A boolean value indicating whether to run the browser in headless mode (without a GUI).
-    # + incognito - A boolean value indicating whether to run the browser in incognito mode.
+    # + options - Represents options for configuring the WebDriver instance.
     # + return - Returns an `Error?` if the browser fails to open or navigate to the specified URL.
-    isolated function openChrome(string url, boolean headless, boolean incognito) returns Error? = @java:Method {
+    private isolated function openChrome(BrowserOptions options) returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 
     # Opens a new Firefox browser instance and navigates to the specified URL.
     #
-    # + url - The URL of the web application to open in the browser.
-    # + headless - A boolean value indicating whether to run the browser in headless mode (without a GUI).
-    # + incognito - A boolean value indicating whether to run the browser in incognito mode.
+    # + options - Represents options for configuring the WebDriver instance.
     # + return - Returns an `Error?` if the browser fails to open or navigate to the specified URL.
-    isolated function openFirefox(string url, boolean headless, boolean incognito) returns Error? = @java:Method {
+    private isolated function openFirefox(BrowserOptions options) returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 

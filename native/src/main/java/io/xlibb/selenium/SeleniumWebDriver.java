@@ -18,6 +18,7 @@ package io.xlibb.selenium;
 
 import io.ballerina.runtime.api.creators.ValueCreator;
 import io.ballerina.runtime.api.utils.StringUtils;
+import io.ballerina.runtime.api.values.BMap;
 import io.ballerina.runtime.api.values.BObject;
 import io.ballerina.runtime.api.values.BString;
 import io.xlibb.selenium.utils.Utils;
@@ -37,10 +38,14 @@ import java.util.Set;
 public class SeleniumWebDriver {
 
     public static final String DRIVER_OBJECT = "nativeDriverObject";
-    public static final String WEB_ELEMENT_OBJECT = "nativeWebElementObject";
     public static final String WEB_ELEMENT_OBJECT_TYPE = "WebElement";
 
-    public static Object openChrome(BObject webDriver, BString url, boolean headless, boolean incognito) {
+    public static Object openChrome(BObject webDriver, BMap<BString, Object> options) {
+        boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
+        String url = options.getStringValue(StringUtils.fromString("url")).toString();
+        boolean incognito = options.getBooleanValue(StringUtils.fromString("incognitoMode"));
+        String[] additionalArguments = options.getArrayValue(StringUtils.fromString("additionalArguments"))
+                .getStringArray();
         if (Utils.getDriverNObject(webDriver) == null) {
             try {
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -51,8 +56,11 @@ public class SeleniumWebDriver {
                 if (incognito) {
                     chromeOptions.addArguments("--incognito");
                 }
+                for (String arg: additionalArguments) {
+                    chromeOptions.addArguments(arg);
+                }
                 webDriver.addNativeData(DRIVER_OBJECT, new ChromeDriver(chromeOptions));
-                Utils.getDriverNObject(webDriver).get(url.toString());
+                Utils.getDriverNObject(webDriver).get(url);
                 return null;
             } catch (Exception e) {
                 return Utils.getBError(e.getMessage(), e);
@@ -62,7 +70,12 @@ public class SeleniumWebDriver {
                 "instance before starting a new one.");
     }
 
-    public static Object openFirefox(BObject webDriver, BString url, boolean headless, boolean incognito) {
+    public static Object openFirefox(BObject webDriver, BMap<BString, Object> options) {
+        boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
+        String url = options.getStringValue(StringUtils.fromString("url")).toString();
+        boolean incognito = options.getBooleanValue(StringUtils.fromString("incognitoMode"));
+        String[] additionalArguments = options.getArrayValue(StringUtils.fromString("additionalArguments"))
+                .getStringArray();
         if (Utils.getDriverNObject(webDriver) == null) {
             try {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -72,8 +85,11 @@ public class SeleniumWebDriver {
                 if (incognito) {
                     firefoxOptions.addArguments("--incognito");
                 }
+                for (String arg: additionalArguments) {
+                    firefoxOptions.addArguments(arg);
+                }
                 webDriver.addNativeData(DRIVER_OBJECT, new FirefoxDriver(firefoxOptions));
-                Utils.getDriverNObject(webDriver).get(url.toString());
+                Utils.getDriverNObject(webDriver).get(url);
                 return null;
             } catch (Exception e) {
                 return Utils.getBError(e.getMessage(), e);
