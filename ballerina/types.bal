@@ -14,6 +14,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
+public enum BrowserName {
+    CHROME = "chrome",
+    FIREFOX = "firefox"
+}
+
 # Represents the options for configuring the WebDriver instance.
 #
 # + browserName - The type of browser to open (either "chrome" or "firefox"). The default is "chrome".
@@ -22,7 +27,7 @@
 # + incognitoMode - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
 # + additionalArguments - A list of additional command-line arguments to pass to the browser during initialization.
 public type BrowserOptions record {|
-    "chrome"|"firefox" browserName = "chrome";
+    BrowserName browserName = CHROME;
     string url;
     boolean headlessMode = false;
     boolean incognitoMode = false;

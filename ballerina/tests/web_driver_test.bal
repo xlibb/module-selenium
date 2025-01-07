@@ -21,12 +21,12 @@ string baseUrl = "https://ballerina-ipa.choreoapps.dev";
 WebDriver chromeDriver = check new ({
     headlessMode: true,
     url: baseUrl + "/complex-dom",
-    browserName: "chrome"
+    browserName: CHROME
 });
 WebDriver firefoxDriver = check new ({
     headlessMode: true,
     url: baseUrl + "/complex-dom",
-    browserName: "firefox"
+    browserName: FIREFOX
 });
 
 @test:Config
@@ -34,7 +34,7 @@ function testInvalidURL() {
     WebDriver|error driver = new ({
         headlessMode: true,
         url: "invalid-baseUrl",
-        browserName: "chrome"
+        browserName: CHROME
     });
     test:assertTrue(driver is error, "Expected error not thrown");
 }
