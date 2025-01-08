@@ -415,7 +415,7 @@ function testWindowHandle(WebDriver driver) returns Error? {
     if (handleError is Error) {
         test:assertFail("Failed to switch to new window");
     } else {
-        runtime:sleep(2);
+        runtime:sleep(3);
         string|Error actualValue = driver.getTitle();
         string expectedValue = "New Window";
         test:assertEquals(actualValue, expectedValue);
@@ -463,6 +463,80 @@ function testExecuteJavascript(WebDriver driver) returns Error? {
     string actualValue = check (check driver.findById("home-button2")).getText();
     string expectedValue = "Click 1";
     test:assertEquals(actualValue, expectedValue, "Element text mismatched");
+}
+
+@test:Config {
+    dependsOn: [testExecuteJavascript],
+    dataProvider: driverProvider
+}
+function testInvalidElementStateError(WebDriver driver) returns Error? {
+    Error? err = (check chromeDriver.findByName("disabled-element")).sendKeys("hello");
+    test:assertTrue(err is InvalidElementStateError, "Expected InvalidElementStateError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testInvalidElementStateError],
+    dataProvider: driverProvider
+}
+function testNoSuchElementError(WebDriver driver) returns Error? {
+    WebElement|Error err = driver.findById("invalid-id");
+    test:assertTrue(err is NoSuchElementError, "Expected NoSuchElementError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testNoSuchElementError],
+    dataProvider: driverProvider
+}
+function testNoAlertPresentError(WebDriver driver) returns Error? {
+    Error? err = driver.acceptAlert();
+    test:assertTrue(err is NoAlertPresentError, "Expected NoAlertPresentError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testNoSuchElementError],
+    dataProvider: driverProvider
+}
+function testNoSuchWindowError(WebDriver driver) returns Error? {
+    Error? err = driver.switchToWindowHandle("invalid-window-handle");
+    test:assertTrue(err is NoSuchWindowError, "Expected NoSuchWindowError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testNoSuchWindowError],
+    dataProvider: driverProvider
+}
+function testJavascriptError(WebDriver driver) returns Error? {
+    Error? err = driver.executeJavascript("consle.log('hello world')");
+    test:assertTrue(err is JavascriptError, "Expected JavascriptError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testNoSuchWindowError],
+    dataProvider: driverProvider
+}
+function testInvalidArgumentError(WebDriver driver) returns Error? {
+    WebDriver|Error err = new({url: "invalid-url", headlessMode: true});
+    test:assertTrue(err is InvalidArgumentError, "Expected InvalidArgumentError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testInvalidArgumentError],
+    dataProvider: driverProvider
+}
+function testInvalidSelectorError(WebDriver driver) returns Error? {
+    WebElement|Error err = driver.findByCssSelector("input:invalid-pseudo-class");
+    test:assertTrue(err is InvalidSelectorError, "Expected InvalidSelectorError, but got another result.");
+}
+
+@test:Config {
+    dependsOn: [testInvalidSelectorError],
+    dataProvider: driverProvider
+}
+function testUnhandledAlertError(WebDriver driver) returns Error? {
+    WebElement element = check driver.findById("home-button");
+    check element.click();
+    Error? err = element.click();
+    test:assertTrue(err is UnhandledAlertError, "Expected UnhandledAlertError, but got another result.");
 }
 
 @test:AfterSuite

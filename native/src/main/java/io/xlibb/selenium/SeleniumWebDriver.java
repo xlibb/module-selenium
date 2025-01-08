@@ -67,7 +67,7 @@ public class SeleniumWebDriver {
             }
         }
         return Utils.getBError("error: A WebDriver instance is already active. Please quit the current " +
-                "instance before starting a new one.");
+                "instance before starting a new one.", null);
     }
 
     public static Object openFirefox(BObject webDriver, BMap<BString, Object> options) {
@@ -96,7 +96,7 @@ public class SeleniumWebDriver {
             }
         }
         return Utils.getBError("error: A WebDriver instance is already active. Please quit the current " +
-                "instance before starting a new one.");
+                "instance before starting a new one.", null);
     }
 
     public static Object getTitle(BObject webDriver) {
@@ -180,11 +180,9 @@ public class SeleniumWebDriver {
 
     public static Object findById(BObject webDriver, BString id) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver).findElements(By.id(id.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("ID", id.toString());
+            return Utils.getWebElementBObject(
+                Utils.getDriverNObject(webDriver).findElement(By.id(id.toString()))
+                );
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -192,12 +190,8 @@ public class SeleniumWebDriver {
 
     public static Object findByClassName(BObject webDriver, BString className) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver)
-                    .findElements(By.className(className.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("CLASS_NAME", className.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver)
+                    .findElement(By.className(className.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -205,12 +199,8 @@ public class SeleniumWebDriver {
 
     public static Object findByTagName(BObject webDriver, BString tagName) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver)
-                    .findElements(By.tagName(tagName.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("TAG_NAME", tagName.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver)
+                    .findElement(By.tagName(tagName.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -218,11 +208,8 @@ public class SeleniumWebDriver {
 
     public static Object findByXpath(BObject webDriver, BString xpath) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver).findElements(By.xpath(xpath.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("XPATH", xpath.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver)
+                    .findElement(By.xpath(xpath.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -230,12 +217,8 @@ public class SeleniumWebDriver {
 
     public static Object findByCssSelector(BObject webDriver, BString cssSelector) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver)
-                    .findElements(By.cssSelector(cssSelector.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("CSS_SELECTOR", cssSelector.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver)
+                    .findElement(By.cssSelector(cssSelector.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -243,11 +226,7 @@ public class SeleniumWebDriver {
 
     public static Object findByName(BObject webDriver, BString name) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver).findElements(By.name(name.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("NAME", name.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver).findElement(By.name(name.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -255,12 +234,8 @@ public class SeleniumWebDriver {
 
     public static Object findByLinkText(BObject webDriver, BString linkText) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver)
-                    .findElements(By.linkText(linkText.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("LINK_TEXT", linkText.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver)
+                    .findElement(By.linkText(linkText.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -268,12 +243,8 @@ public class SeleniumWebDriver {
 
     public static Object findByPartialLinkText(BObject webDriver, BString partialLinkText) {
         try {
-            List<WebElement> webElement = Utils.getDriverNObject(webDriver)
-                    .findElements(By.partialLinkText(partialLinkText.toString()));
-            if (!webElement.isEmpty()) {
-                return Utils.getWebElementBObject(webElement.get(0));
-            }
-            return Utils.noSuchElementError("PARTIAL_LINK_TEXT", partialLinkText.toString());
+            return Utils.getWebElementBObject(Utils.getDriverNObject(webDriver)
+                    .findElement(By.partialLinkText(partialLinkText.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }

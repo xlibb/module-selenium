@@ -14,26 +14,16 @@
 // specific language governing permissions and limitations
 // under the License.
 
-// replace with match ifelse in init ---------------------------------------------------- done
-// create seperate classes for errors
-// make browser options closed ---------------------------------------------------------- done
-// introduce additional arguments in browser options ------------------------------------ done
-// pass brpwser options record itself for the native ------------------------------------ done
-// check disable gpu
-// update build.gradle for libs instead connectors -------------------------------------- done
-// update workflows --------------------------------------------------------------------- done
-// enums for browser names
-
 import ballerina/jballerina.java;
 
 public class WebDriver {
 
-    public isolated function init(BrowserOptions options) returns error? {
+    public isolated function init(BrowserOptions options) returns Error? {
         match options.browserName {
-            "chrome" => {
+            CHROME => {
                 return check self.openChrome(options);
             }
-            "firefox" => {
+            FIREFOX => {
                 return check self.openFirefox(options);
             }
         }
