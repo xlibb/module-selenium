@@ -16,15 +16,17 @@ The core component of Selenium is the `WebDriver`. It is an interface for contro
 
 The constructor of the `WebDriver` takes `BrowserOptions` as an argument, which contains the following options:
 
-1. `browserName` - Specifies the type of browser to open. Acceptable values are "chrome" or "firefox". The default is "chrome".
+1. `browserName` - A enum value specifies the type of browser to open. Acceptable values are `Sikulix:CHROME` or `Sikulix:FIREFOX`. The default is `Sikulix:CHROME`.
 2. `url` - The URL of the web application to open in the browser.
 3. `headlessMode` - A boolean value indicating whether to run the browser in headless mode (without a GUI). The default is `false`.
 4. `incognitoMode` - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
+5. `additionalArguments` - A list of additional command-line arguments to pass to the browser during initialization.
 
 ```ballerina
 // Opens a new Chrome browser instance and navigates to the specified URL.
 selenium:WebDriver driver = new ({
-    url: "https://central.ballerina.io/"
+    url: "https://central.ballerina.io/",
+    additionalArguments: ["--start-maximized"]
 });
 ```
 
@@ -204,6 +206,6 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
 
 The `Selenium` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/xlibb/module-selenium/tree/main/examples/), covering the following use cases:
 
-1. [Web Scrapping.](https://github.com/xlibb/module-selenium/tree/main/examples/web_scrapping). 
+1. [Web Scrapping.](https://github.com/xlibb/module-selenium/tree/main/examples/web_scrapping)
 
-2. [Automating the Filling of Student Application Forms for a Web Application.](https://github.com/xlibb/module-selenium/tree/main/examples/student_application_form_filling). 
+2. [Automating the Filling of Student Application Forms for a Web Application.](https://github.com/xlibb/module-selenium/tree/main/examples/student_application_form_filling)

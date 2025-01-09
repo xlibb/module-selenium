@@ -25,10 +25,11 @@ The core component of Selenium is the `WebDriver`. It is an interface for contro
 
 The constructor of the `WebDriver` takes `BrowserOptions` as an argument, which contains the following options:
 
-1. `browserName` - Specifies the type of browser to open. Acceptable values are "chrome" or "firefox". The default is "chrome".
+1. `browserName` - A enum value specifies the type of browser to open. Acceptable values are `Sikulix:CHROME` or `Sikulix:FIREFOX`. The default is `Sikulix:CHROME`.
 2. `url` - The URL of the web application to open in the browser.
 3. `headlessMode` - A boolean value indicating whether to run the browser in headless mode (without a GUI). The default is `false`.
 4. `incognitoMode` - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
+5. `additionalArguments` - A list of additional command-line arguments to pass to the browser during initialization.
 
 ```ballerina
 // Opens a new Chrome browser instance and navigates to the specified URL.
@@ -347,14 +348,14 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
 
 3. Start a New Project: Click on Create a New Project and name your project.
 
-<img width="947" alt="new project - side" src="./resources/new project - side.png">
+<img width="947" alt="new project - side" src="./ballerina/resources/new project - side.png">
 
 4. Start Recording:
     - Click on the Record a New Test in a New Project option.
     - Enter the URL of the web application you want to test.
     - Selenium IDE will open the URL in a new tab and start recording your actions.
 
-<img width="960" alt="start recording - side" src="./resources/enter base url - side.png">
+<img width="960" alt="start recording - side" src="./ballerina/resources/enter base url - side.png">
 
 5. Perform Actions on the Webpage: Interact with the web elements (e.g., click buttons, fill out forms) on the page. Selenium IDE will record these actions as steps in your test case.
 6. View Recorded Steps: Once done, stop the recording. The recorded steps will appear in the Selenium IDE window. Each step will include information about the action and the locator used.
@@ -363,15 +364,15 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
     - The Target field shows the locator for the web element (e.g., XPath, ID, Name, CSS selector, etc.).
     - You can switch between different locator strategies by clicking the dropdown next to the locator. Selenium IDE will display alternatives if available.
 
-<img width="959" alt="find locators" src="./resources/find locators.png">
+<img width="959" alt="find locators" src="./ballerina/resources/find locators.png">
 
 ## Examples
 
 The `Selenium` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/xlibb/module-selenium/tree/main/examples/), covering the following use cases:
 
-1. [Web Scrapping.](https://github.com/xlibb/module-selenium/tree/main/examples/web_scrapping). 
+1. [Web Scrapping.](https://github.com/xlibb/module-selenium/tree/main/examples/web_scrapping)
 
-2. [Automating the Filling of Student Application Forms for a Web Application.](https://github.com/xlibb/module-selenium/tree/main/examples/student_application_form_filling). 
+2. [Automating the Filling of Student Application Forms for a Web Application.](https://github.com/xlibb/module-selenium/tree/main/examples/student_application_form_filling)
 
 ## Build from the source
 
