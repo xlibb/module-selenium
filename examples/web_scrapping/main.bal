@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -29,7 +29,7 @@ public function main() returns error? {
 
     string category = "Science";
     selenium:WebElement|error categoryLink = driver.findByPartialLinkText(category);
-    if (categoryLink is error) {
+    if categoryLink is error {
         io:println(`Invalid category name: ${category}`);
         check driver.quit();
         return;
@@ -38,7 +38,7 @@ public function main() returns error? {
     runtime:sleep(2);
 
     selenium:WebElement[] results = check driver.findAllByClassName("product_pod");
-    if (results.length() == 0) {
+    if results.length() == 0 {
         io:println("No results found for category " + category);
     }
     int count = 0;

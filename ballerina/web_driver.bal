@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -16,7 +16,8 @@
 
 import ballerina/jballerina.java;
 
-public class WebDriver {
+# Consists of APIs to interact with web browsers.
+public isolated class WebDriver {
 
     public isolated function init(BrowserOptions options) returns Error? {
         match options.browserName {
@@ -32,7 +33,7 @@ public class WebDriver {
     # Opens a new Chrome browser instance and navigates to the specified URL.
     #
     # + options - Represents options for configuring the WebDriver instance.
-    # + return - Returns an `Error?` if the browser fails to open or navigate to the specified URL.
+    # + return - Returns an `Error` if the browser fails to open or navigate to the specified URL, otherwise returns `()`.
     private isolated function openChrome(BrowserOptions options) returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
@@ -40,7 +41,7 @@ public class WebDriver {
     # Opens a new Firefox browser instance and navigates to the specified URL.
     #
     # + options - Represents options for configuring the WebDriver instance.
-    # + return - Returns an `Error?` if the browser fails to open or navigate to the specified URL.
+    # + return - Returns an `Error` if the browser fails to open or navigate to the specified URL, otherwise returns `()`.
     private isolated function openFirefox(BrowserOptions options) returns Error? = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;

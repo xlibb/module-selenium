@@ -1,10 +1,9 @@
-# Automating the Filling of Student Application Form
+# Automating the filling of student application form
 
-## Overview
 This guide demonstrates automating the process of filling out student application forms using the Ballerina Selenium module.
 
-## Implementation
-For this task, we use sample JSON data available in [this file](./modules/resources/data.json). The example project showcases how to automate the data entry process by populating this information into [this web application](https://bal-selenium.choreoapps.dev/).
+## Overview
+The example project automates data entry by retrieving student information from a [JSON file](./modules/resources/data.json) and populating it into a [web application]((https://bal-selenium.choreoapps.dev/)).
 
 ## Run the Example
 

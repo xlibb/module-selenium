@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -16,7 +16,8 @@
 
 import ballerina/jballerina.java;
 
-public class WebElement {
+# Consists of APIs to interact with web elements.
+public isolated class WebElement {
 
     # Performs a click action on the specified web element.
     #
@@ -150,7 +151,7 @@ public class WebElement {
     # Locates all web elements by their class name.
     #
     # + className - The class name of the web elements.
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByClassName(string className) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
@@ -158,7 +159,7 @@ public class WebElement {
     # Locates all web elements by their tag name inside another web element.
     #
     # + tagName - The tag name of the web elements (e.g., `div`, `input`, `button`).
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByTagName(string tagName) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
@@ -166,7 +167,7 @@ public class WebElement {
     # Locates all web elements using an XPath expression inside another web element.
     #
     # + xpath - The XPath expression used to locate the elements.
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByXpath(string xpath) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
@@ -174,7 +175,7 @@ public class WebElement {
     # Locates all web elements using a CSS selector inside another web element.
     #
     # + cssSelector - The CSS selector used to locate the elements.
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByCssSelector(string cssSelector) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
@@ -182,7 +183,7 @@ public class WebElement {
     # Locates all web elements by their `name` attribute inside another web element.
     #
     # + name - The `name` attribute of the web elements.
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByName(string name) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
@@ -190,7 +191,7 @@ public class WebElement {
     # Locates all web elements by their exact link text inside another web element.
     #
     # + linkText - The exact text of the links.
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByLinkText(string linkText) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
@@ -198,7 +199,7 @@ public class WebElement {
     # Locates all web elements by their partial link text inside another web element.
     #
     # + partialLinkText - The partial text of the links.
-    # + return - Returnsn array of `WebElement` representing all the located elements, or `Error` if an error occurs.
+    # + return - Returns an array of `WebElement` representing all the located elements, or `Error` if an error occurs.
     public isolated function findAllByPartialLinkText(string partialLinkText) returns WebElement[]|Error = @java:Method {
         'class: "io.xlibb.selenium.SeleniumWebElement"
     } external;
