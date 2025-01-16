@@ -51,7 +51,6 @@ public class SeleniumWebDriver {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (headless) {
                     chromeOptions.addArguments("--headless");
-                    chromeOptions.addArguments("--disable-gpu");
                 }
                 if (incognito) {
                     chromeOptions.addArguments("--incognito");
