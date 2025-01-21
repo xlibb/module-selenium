@@ -29,8 +29,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-
-public class Utils {
+public final class Utils {
 
     public static final String DRIVER_OBJECT = "nativeDriverObject";
     public static final String WEB_ELEMENT_OBJECT = "nativeWebElementObject";
@@ -51,6 +50,9 @@ public class Utils {
     public static final String TIMEOUT_ERROR_TYPE = "TimeoutError";
     public static final String UNHANDLED_ALERT_ERROR_TYPE = "UnhandledAlertError";
 
+    private Utils() {
+    }
+
     public static WebDriver getDriverNObject(BObject object) {
         return (WebDriver) object.getNativeData(DRIVER_OBJECT);
     }
@@ -62,7 +64,7 @@ public class Utils {
         return elementBObj;
     }
 
-    public static BObject[] getWebElementBObjectArr(List<WebElement> webElements) {
+    public static BObject[] getWebElementBObjectArray(List<WebElement> webElements) {
         BObject[] elementArr = new BObject[webElements.size()];
         for (int i = 0; i < webElements.size(); i++) {
             elementArr[i]  = getWebElementBObject(webElements.get(i));

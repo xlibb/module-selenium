@@ -35,10 +35,10 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Provide APIs to interact with web browsers.
+ */
 public class SeleniumWebDriver {
-
-    public static final String DRIVER_OBJECT = "nativeDriverObject";
-    public static final String WEB_ELEMENT_OBJECT_TYPE = "WebElement";
 
     public static Object openChrome(BObject webDriver, BMap<BString, Object> options) {
         boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
@@ -58,7 +58,7 @@ public class SeleniumWebDriver {
                 for (String arg: additionalArguments) {
                     chromeOptions.addArguments(arg);
                 }
-                webDriver.addNativeData(DRIVER_OBJECT, new ChromeDriver(chromeOptions));
+                webDriver.addNativeData(Utils.DRIVER_OBJECT, new ChromeDriver(chromeOptions));
                 Utils.getDriverNObject(webDriver).get(url);
                 return null;
             } catch (Exception e) {
@@ -87,7 +87,7 @@ public class SeleniumWebDriver {
                 for (String arg: additionalArguments) {
                     firefoxOptions.addArguments(arg);
                 }
-                webDriver.addNativeData(DRIVER_OBJECT, new FirefoxDriver(firefoxOptions));
+                webDriver.addNativeData(Utils.DRIVER_OBJECT, new FirefoxDriver(firefoxOptions));
                 Utils.getDriverNObject(webDriver).get(url);
                 return null;
             } catch (Exception e) {
@@ -253,8 +253,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.tagName(tagName.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -264,8 +264,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.className(className.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -275,8 +275,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.cssSelector(cssSelector.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -286,8 +286,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.linkText(linkText.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -297,8 +297,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver).findElements(
                     By.partialLinkText(partialLinkText.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -307,8 +307,8 @@ public class SeleniumWebDriver {
     public static Object findAllByXpath(BObject webDriver, BString xpath) {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver).findElements(By.xpath(xpath.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -317,8 +317,8 @@ public class SeleniumWebDriver {
     public static Object findAllByName(BObject webDriver, BString name) {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver).findElements(By.name(name.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(webElements)
-                    , Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
+                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }

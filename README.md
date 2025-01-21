@@ -25,7 +25,7 @@ The core component of Selenium is the `WebDriver`. It is an interface for contro
 
 The constructor of the `WebDriver` takes `BrowserOptions` as an argument, which contains the following options:
 
-1. `browserName` - A enum value specifies the type of browser to open. Acceptable values are `Sikulix:CHROME` or `Sikulix:FIREFOX`. The default is `Sikulix:CHROME`.
+1. `browserName` - A enum value specifies the type of browser to open. Acceptable values are `selenium:CHROME` or `selenium:FIREFOX`. The default is `selenium:CHROME`.
 2. `url` - The URL of the web application to open in the browser.
 3. `headlessMode` - A boolean value indicating whether to run the browser in headless mode (without a GUI). The default is `false`.
 4. `incognitoMode` - A boolean value indicating whether to run the browser in incognito mode. The default is `false`.
@@ -40,7 +40,7 @@ selenium:WebDriver driver = new ({
 
 ### Locating elements
 
-`WebElement` in selenium represents an element in the DOM, which allows interaction (e.g., click, send keys).
+`WebElement` in `selenium` represents an element in the DOM, which allows interaction (e.g., click, send keys).
 
 A locator is a way to identify `WebElement` on a page. Selenium provides support for several location strategies(locators) in WebDriver:
 
@@ -183,20 +183,6 @@ io:println(driver.getTitle()); // Prints "The Internet"
 check driver.quit();
 ```
 
-The core component of Selenium is the WebDriver. It is an interface for controlling a web browser instance and communicates with the browser through its native API.
-
-```ballerina
-import xlibb/selenium;
-
-public function main() {
-
-    selenium:WebDriver driver = new ();
-
-    // Opens a new Chrome browser instance and navigates to the specified URL.
-    driver.openChrome("https://central.ballerina.io/");
-}
-```
-
 ### Locating elements
 
 A locator is a way to identify elements on a page. Selenium provides support for several location strategies in WebDriver, such as class name, ID, CSS selector, name, tag name, and XPath. 
@@ -302,10 +288,9 @@ driver.quit();
 
 ```ballerina
 // Initialize a new WebDriver instance
-selenium:WebDriver driver = new ();
-
-// Open the specified URL in Chrome.
-driver.openChrome("https://the-internet.herokuapp.com/windows");
+selenium:WebDriver driver = new ({
+    url: "https://the-internet.herokuapp.com/windows"
+});
 
 // Print the title of the current window.
 io:println(driver.getTitle()); // Prints "The Internet"

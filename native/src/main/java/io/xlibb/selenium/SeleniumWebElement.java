@@ -26,14 +26,14 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+/**
+ * Provide APIs to interact with web elements.
+ */
 public class SeleniumWebElement {
-
-    public static final String WEB_ELEMENT_OBJECT = "nativeWebElementObject";
-    public static final String WEB_ELEMENT_OBJECT_TYPE = "WebElement";
 
     public static Object click(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             nativeElement.click();
             return null;
         }  catch (Exception e) {
@@ -43,7 +43,7 @@ public class SeleniumWebElement {
 
     public static Object clear(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             nativeElement.clear();
             return null;
         }  catch (Exception e) {
@@ -53,7 +53,7 @@ public class SeleniumWebElement {
 
     public static Object sendKeys(BObject element, BString value) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             nativeElement.sendKeys(value.toString());
             return null;
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class SeleniumWebElement {
 
     public static Object getTagName(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return StringUtils.fromString(nativeElement.getTagName());
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -72,7 +72,7 @@ public class SeleniumWebElement {
 
     public static Object getText(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return StringUtils.fromString(nativeElement.getText());
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -81,7 +81,7 @@ public class SeleniumWebElement {
 
     public static Object getDomAttribute(BObject element, BString value) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return StringUtils.fromString(nativeElement.getDomAttribute(value.toString()));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -90,7 +90,7 @@ public class SeleniumWebElement {
 
     public static Object getDomProperty(BObject element, BString value) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return StringUtils.fromString(nativeElement.getDomProperty(value.toString()));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -99,7 +99,7 @@ public class SeleniumWebElement {
 
     public static Object isDisplayed(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return nativeElement.isDisplayed();
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -108,7 +108,7 @@ public class SeleniumWebElement {
 
     public static Object isEnabled(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return nativeElement.isEnabled();
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -117,7 +117,7 @@ public class SeleniumWebElement {
 
     public static Object isSelected(BObject element) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return nativeElement.isSelected();
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -126,7 +126,7 @@ public class SeleniumWebElement {
 
     public static Object findById(BObject element, BString id) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement.findElement(By.id(id.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -135,7 +135,7 @@ public class SeleniumWebElement {
 
     public static Object findByClassName(BObject element, BString className) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement.findElement(By.className(className.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -144,7 +144,7 @@ public class SeleniumWebElement {
 
     public static Object findByTagName(BObject element, BString tagName) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement.findElement(By.tagName(tagName.toString())));
         }  catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -152,13 +152,13 @@ public class SeleniumWebElement {
     }
 
     public static Object findByXpath(BObject element, BString xpath) {
-        WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+        WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
         return Utils.getWebElementBObject(nativeElement.findElement(By.xpath(xpath.toString())));
     }
 
     public static Object findByCssSelector(BObject element, BString cssSelector) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement.findElement(By.cssSelector(cssSelector.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -167,7 +167,7 @@ public class SeleniumWebElement {
 
     public static Object findByName(BObject element, BString name) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement.findElement(By.name(name.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -176,7 +176,7 @@ public class SeleniumWebElement {
 
     public static Object findByLinkText(BObject element, BString linkText) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement.findElement(By.linkText(linkText.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
@@ -185,7 +185,7 @@ public class SeleniumWebElement {
 
     public static Object findByPartialLinkText(BObject element, BString partialLinkText) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             return Utils.getWebElementBObject(nativeElement
                     .findElement(By.partialLinkText(partialLinkText.toString())));
         } catch (Exception e) {
@@ -195,10 +195,10 @@ public class SeleniumWebElement {
 
     public static Object findAllByTagName(BObject element, BString tagName) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By.tagName(tagName.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -206,10 +206,10 @@ public class SeleniumWebElement {
 
     public static Object findAllByClassName(BObject element, BString className) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By.className(className.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -217,10 +217,10 @@ public class SeleniumWebElement {
 
     public static Object findAllByCssSelector(BObject element, BString cssSelector) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By.cssSelector(cssSelector.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -228,10 +228,10 @@ public class SeleniumWebElement {
 
     public static Object findAllByLinkText(BObject element, BString linkText) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By.linkText(linkText.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -239,11 +239,11 @@ public class SeleniumWebElement {
 
     public static Object findAllByPartialLinkText(BObject element, BString partialLinkText) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By
                     .partialLinkText(partialLinkText.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -251,10 +251,10 @@ public class SeleniumWebElement {
 
     public static Object findAllByXpath(BObject element, BString xpath) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By.xpath(xpath.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -262,10 +262,10 @@ public class SeleniumWebElement {
 
     public static Object findAllByName(BObject element, BString name) {
         try {
-            WebElement nativeElement = (WebElement) element.getNativeData(WEB_ELEMENT_OBJECT);
+            WebElement nativeElement = (WebElement) element.getNativeData(Utils.WEB_ELEMENT_OBJECT);
             List<WebElement> nestedElements = nativeElement.findElements(By.name(name.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArr(nestedElements),
-                    Utils.getArrayType(WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(nestedElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
