@@ -382,7 +382,7 @@ function testAlert(WebDriver driver) returns Error? {
     WebElement element = check driver.findById("home-button");
     check element.click();
     Error? alertAcceptError = driver.acceptAlert();
-    if (alertAcceptError is Error) {
+    if alertAcceptError is Error {
         test:assertFail(alertAcceptError.message());
     } else {
         string actualValue = check element.getText();
@@ -390,7 +390,7 @@ function testAlert(WebDriver driver) returns Error? {
         test:assertEquals(actualValue, expectedValue);
         check element.click();
         Error? alertDismissError = driver.dismissAlert();
-        if (alertDismissError is Error) {
+        if alertDismissError is Error {
             test:assertFail(alertDismissError.message());
         } else {
             actualValue = check element.getText();
@@ -414,7 +414,7 @@ function testWindowHandle(WebDriver driver) returns Error? {
     test:assertEquals(allWindows.length(), 2);
     test:assertEquals(allWindows[0], firstWindow);
     Error? handleError = driver.switchToWindowHandle(allWindows[1]);
-    if (handleError is Error) {
+    if handleError is Error {
         test:assertFail("Failed to switch to new window");
     } else {
         runtime:sleep(3);
@@ -426,7 +426,7 @@ function testWindowHandle(WebDriver driver) returns Error? {
             test:assertFail("Failed to close new window");
         }
         handleError = driver.switchToWindowHandle(firstWindow);
-        if (handleError is Error) {
+        if handleError is Error {
             test:assertFail("Failed to switch to first window");
         } else {
             actualValue = driver.getTitle();
@@ -554,7 +554,7 @@ function teardown() {
 }
 
 function validateFindAll(WebElement[]|Error elements, int expectedCount) {
-    if (elements is Error) {
+    if elements is Error {
         test:assertFail(elements.message());
     } else {
         test:assertEquals(elements.length(), expectedCount, "Element count mismatched");
