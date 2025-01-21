@@ -41,61 +41,53 @@ import java.util.Set;
 public class SeleniumWebDriver {
 
     public static Object openChrome(BObject webDriver, BMap<BString, Object> options) {
-        boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
-        String url = options.getStringValue(StringUtils.fromString("url")).toString();
-        boolean incognito = options.getBooleanValue(StringUtils.fromString("incognitoMode"));
-        String[] additionalArguments = options.getArrayValue(StringUtils.fromString("additionalArguments"))
-                .getStringArray();
-        if (Utils.getDriverNObject(webDriver) == null) {
-            try {
-                ChromeOptions chromeOptions = new ChromeOptions();
-                if (headless) {
-                    chromeOptions.addArguments("--headless");
-                }
-                if (incognito) {
-                    chromeOptions.addArguments("--incognito");
-                }
-                for (String arg: additionalArguments) {
-                    chromeOptions.addArguments(arg);
-                }
-                webDriver.addNativeData(Utils.DRIVER_OBJECT, new ChromeDriver(chromeOptions));
-                Utils.getDriverNObject(webDriver).get(url);
-                return null;
-            } catch (Exception e) {
-                return Utils.getBError(e.getMessage(), e);
+        try {
+            boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
+            String url = options.getStringValue(StringUtils.fromString("url")).toString();
+            boolean incognito = options.getBooleanValue(StringUtils.fromString("incognitoMode"));
+            String[] additionalArguments = options.getArrayValue(StringUtils.fromString("additionalArguments"))
+                    .getStringArray();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            if (headless) {
+                chromeOptions.addArguments("--headless");
             }
+            if (incognito) {
+                chromeOptions.addArguments("--incognito");
+            }
+            for (String arg : additionalArguments) {
+                chromeOptions.addArguments(arg);
+            }
+            webDriver.addNativeData(Utils.DRIVER_OBJECT, new ChromeDriver(chromeOptions));
+            Utils.getDriverNObject(webDriver).get(url);
+            return null;
+        } catch (Exception e) {
+            return Utils.getBError(e.getMessage(), e);
         }
-        return Utils.getBError("error: A WebDriver instance is already active. Please quit the current " +
-                "instance before starting a new one.", null);
     }
 
     public static Object openFirefox(BObject webDriver, BMap<BString, Object> options) {
-        boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
-        String url = options.getStringValue(StringUtils.fromString("url")).toString();
-        boolean incognito = options.getBooleanValue(StringUtils.fromString("incognitoMode"));
-        String[] additionalArguments = options.getArrayValue(StringUtils.fromString("additionalArguments"))
-                .getStringArray();
-        if (Utils.getDriverNObject(webDriver) == null) {
-            try {
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                if (headless) {
-                    firefoxOptions.addArguments("--headless");
-                }
-                if (incognito) {
-                    firefoxOptions.addArguments("--incognito");
-                }
-                for (String arg: additionalArguments) {
-                    firefoxOptions.addArguments(arg);
-                }
-                webDriver.addNativeData(Utils.DRIVER_OBJECT, new FirefoxDriver(firefoxOptions));
-                Utils.getDriverNObject(webDriver).get(url);
-                return null;
-            } catch (Exception e) {
-                return Utils.getBError(e.getMessage(), e);
+        try {
+            boolean headless = options.getBooleanValue(StringUtils.fromString("headlessMode"));
+            String url = options.getStringValue(StringUtils.fromString("url")).toString();
+            boolean incognito = options.getBooleanValue(StringUtils.fromString("incognitoMode"));
+            String[] additionalArguments = options.getArrayValue(StringUtils.fromString("additionalArguments"))
+                    .getStringArray();
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            if (headless) {
+                firefoxOptions.addArguments("--headless");
             }
+            if (incognito) {
+                firefoxOptions.addArguments("--incognito");
+            }
+            for (String arg : additionalArguments) {
+                firefoxOptions.addArguments(arg);
+            }
+            webDriver.addNativeData(Utils.DRIVER_OBJECT, new FirefoxDriver(firefoxOptions));
+            Utils.getDriverNObject(webDriver).get(url);
+            return null;
+        } catch (Exception e) {
+            return Utils.getBError(e.getMessage(), e);
         }
-        return Utils.getBError("error: A WebDriver instance is already active. Please quit the current " +
-                "instance before starting a new one.", null);
     }
 
     public static Object getTitle(BObject webDriver) {
@@ -180,8 +172,7 @@ public class SeleniumWebDriver {
     public static Object findById(BObject webDriver, BString id) {
         try {
             return Utils.getWebElementBObject(
-                Utils.getDriverNObject(webDriver).findElement(By.id(id.toString()))
-                );
+                    Utils.getDriverNObject(webDriver).findElement(By.id(id.toString())));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -253,8 +244,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.tagName(tagName.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -264,8 +255,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.className(className.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -275,8 +266,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.cssSelector(cssSelector.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -286,8 +277,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver)
                     .findElements(By.linkText(linkText.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -297,8 +288,8 @@ public class SeleniumWebDriver {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver).findElements(
                     By.partialLinkText(partialLinkText.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -307,8 +298,8 @@ public class SeleniumWebDriver {
     public static Object findAllByXpath(BObject webDriver, BString xpath) {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver).findElements(By.xpath(xpath.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -317,8 +308,8 @@ public class SeleniumWebDriver {
     public static Object findAllByName(BObject webDriver, BString name) {
         try {
             List<WebElement> webElements = Utils.getDriverNObject(webDriver).findElements(By.name(name.toString()));
-            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements)
-                    , Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
+            return ValueCreator.createArrayValue(Utils.getWebElementBObjectArray(webElements),
+                    Utils.getArrayType(Utils.WEB_ELEMENT_OBJECT_TYPE));
         } catch (Exception e) {
             return Utils.getBError(e.getMessage(), e);
         }
@@ -326,10 +317,10 @@ public class SeleniumWebDriver {
 
     public static Object acceptAlert(BObject webDriver) {
         try {
-             Utils.getDriverNObject(webDriver).switchTo().alert().accept();
-             return null;
+            Utils.getDriverNObject(webDriver).switchTo().alert().accept();
+            return null;
         } catch (Exception e) {
-             return Utils.getBError(e.getMessage(), e);
+            return Utils.getBError(e.getMessage(), e);
         }
     }
 
