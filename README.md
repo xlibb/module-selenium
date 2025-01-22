@@ -1,7 +1,7 @@
 # module-selenium
 This repository contains the source code of the Ballerina Selenium library package
 
-[![Build](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/.yml)
+[![Build](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml)
 [![Trivy](https://github.com/xlibb/module-selenium/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/trivy-scan.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/xlibb/module-selenium.svg)](https://github.com/xlibb/module-selenium/commits/master)
 [![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/selenium.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%selenium)
