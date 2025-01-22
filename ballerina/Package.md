@@ -114,7 +114,7 @@ To send user inputs to `WebElement`s, you can use the `sendKeys()` method, which
 
 ```ballerina
 selenium:WebElement element = check driver.findByName("email");
-check element.sendKeys("exmaple@abc.com");
+check element.sendKeys("example@abc.com");
 ```
 
 ### Performing Click event
@@ -190,7 +190,7 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
     - Enter the URL of the web application you want to test.
     - Selenium IDE will open the URL in a new tab and start recording your actions.
 
-<img width="960" alt="start recording - side" src="./resources/enter base url - side.png">
+<img width="960" alt="start recording - side" src="https://raw.githubusercontent.com/xlibb/module-selenium/blob/main/ballerina/resources/enter base url - side.png">
 
 5. Perform Actions on the Webpage: Interact with the web elements (e.g., click buttons, fill out forms) on the page. Selenium IDE will record these actions as steps in your test case.
 6. View Recorded Steps: Once done, stop the recording. The recorded steps will appear in the Selenium IDE window. Each step will include information about the action and the locator used.

@@ -46,7 +46,7 @@ public isolated class WebDriver {
         'class: "io.xlibb.selenium.SeleniumWebDriver"
     } external;
 
-    # Retrieves the title of the current web page opened in the browser.
+    # Retrieves the title of the current web page.
     #
     # + return - Returns a `string` representing the title of the web page, or an `Error` if an error occurs.
     public isolated function getTitle() returns string|Error = @java:Method {

@@ -115,7 +115,7 @@ To send user inputs to `WebElement`s, you can use the `sendKeys()` method, which
 
 ```ballerina
 selenium:WebElement element = check driver.findByName("email");
-check element.sendKeys("exmaple@abc.com");
+check element.sendKeys("example@abc.com");
 ```
 
 ### Performing Click event
