@@ -184,14 +184,14 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
 
 3. Start a New Project: Click on Create a New Project and name your project.
 
-<img width="947" alt="new project - side" src="./resources/new project - side.png">
+<img width="947" alt="new project - side" src="https://raw.githubusercontent.com/xlibb/module-selenium/refs/heads/main/ballerina/resources/new-project.png">
 
 4. Start Recording:
     - Click on the Record a New Test in a New Project option.
     - Enter the URL of the web application you want to test.
     - Selenium IDE will open the URL in a new tab and start recording your actions.
 
-<img width="960" alt="start recording - side" src="./resources/enter base url - side.png">
+<img width="960" alt="start recording - side" src="https://raw.githubusercontent.com/xlibb/module-selenium/refs/heads/main/ballerina/resources/enter-base-url.png">
 
 5. Perform Actions on the Webpage: Interact with the web elements (e.g., click buttons, fill out forms) on the page. Selenium IDE will record these actions as steps in your test case.
 6. View Recorded Steps: Once done, stop the recording. The recorded steps will appear in the Selenium IDE window. Each step will include information about the action and the locator used.
@@ -200,7 +200,7 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
     - The Target field shows the locator for the web element (e.g., XPath, ID, Name, CSS selector, etc.).
     - You can switch between different locator strategies by clicking the dropdown next to the locator. Selenium IDE will display alternatives if available.
 
-<img width="959" alt="find locators" src="./resources/find locators.png">
+<img width="959" alt="find locators" src="https://raw.githubusercontent.com/xlibb/module-selenium/refs/heads/main/ballerina/resources/find-locators.png">
 
 ## Examples
 
