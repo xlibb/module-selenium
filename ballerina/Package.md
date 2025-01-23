@@ -24,7 +24,7 @@ The constructor of the `WebDriver` takes `BrowserOptions` as an argument, which 
 
 ```ballerina
 // Opens a new Chrome browser instance and navigates to the specified URL.
-selenium:WebDriver driver = new ({
+selenium:WebDriver driver = check new ({
     url: "https://central.ballerina.io/"
 });
 ```
@@ -138,7 +138,7 @@ check driver.quit();
 
 ```ballerina
 // Initialize a new WebDriver instance
-selenium:WebDriver driver = new ({
+selenium:WebDriver driver = check new ({
     url: "https://the-internet.herokuapp.com/windows"
 });
 
