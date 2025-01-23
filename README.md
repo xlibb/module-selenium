@@ -1,9 +1,9 @@
-# module-selenium
-This repository contains the source code of the Ballerina Selenium library package
+# Ballerina Selenium Library
 
-[![Build](https://github.com/xlibb/module-selenium/actions/workflows/ci.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/ci.yml)
+This repository contains the source code of the Ballerina Selenium library package. This module automates web applications across various browsers. Selenium interacts with web browsers directly, simulating user actions such as clicks, text input, page navigation, and more.
+
+[![Build](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml)
 [![Trivy](https://github.com/xlibb/module-selenium/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/trivy-scan.yml)
-[![GraalVM Check](https://github.com/xlibb/module-selenium/actions/workflows/build-with-bal-test-graalvm.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/build-with-bal-test-graalvm.yml)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/xlibb/module-selenium.svg)](https://github.com/xlibb/module-selenium/commits/master)
 [![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/selenium.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%selenium)
 
@@ -123,7 +123,7 @@ To send user inputs to `WebElement`s, you can use the `sendKeys()` method, which
 
 ```ballerina
 selenium:WebElement element = check driver.findByName("email");
-check element.sendKeys("exmaple@abc.com");
+check element.sendKeys("example@abc.com");
 ```
 
 ### Performing Click event
@@ -333,14 +333,14 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
 
 3. Start a New Project: Click on Create a New Project and name your project.
 
-<img width="947" alt="new project - side" src="./ballerina/resources/new project - side.png">
+![Start new project](https://raw.githubusercontent.com/xlibb/module-selenium/8a31ed1f73507f20c7ba061dd5e3feb04d0948c7/ballerina/resources/new-project.png)
 
 4. Start Recording:
     - Click on the Record a New Test in a New Project option.
     - Enter the URL of the web application you want to test.
     - Selenium IDE will open the URL in a new tab and start recording your actions.
 
-<img width="960" alt="start recording - side" src="./ballerina/resources/enter base url - side.png">
+![Start recording](https://raw.githubusercontent.com/xlibb/module-selenium/8a31ed1f73507f20c7ba061dd5e3feb04d0948c7/ballerina/resources/enter-base-url.png)
 
 5. Perform Actions on the Webpage: Interact with the web elements (e.g., click buttons, fill out forms) on the page. Selenium IDE will record these actions as steps in your test case.
 6. View Recorded Steps: Once done, stop the recording. The recorded steps will appear in the Selenium IDE window. Each step will include information about the action and the locator used.
@@ -349,7 +349,7 @@ Selenium IDE is a handy tool for finding locators for web elements. Here's how t
     - The Target field shows the locator for the web element (e.g., XPath, ID, Name, CSS selector, etc.).
     - You can switch between different locator strategies by clicking the dropdown next to the locator. Selenium IDE will display alternatives if available.
 
-<img width="959" alt="find locators" src="./ballerina/resources/find locators.png">
+![Inspect locators](https://raw.githubusercontent.com/xlibb/module-selenium/8a31ed1f73507f20c7ba061dd5e3feb04d0948c7/ballerina/resources/find-locators.png)
 
 ## Examples
 
