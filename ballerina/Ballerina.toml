@@ -19,7 +19,7 @@ graalvmCompatible = true
 groupId = "io.xlibb.selenium"
 artifactId = "selenium-native"
 version = "0.1.0"
-path = "../native/build/libs/selenium-native-0.1.0-SNAPSHOT.jar"
+path = "../native/build/libs/selenium-native-0.1.0.jar"
 
 [[platform.java17.dependency]]
 groupId = "org.seleniumhq.selenium"
