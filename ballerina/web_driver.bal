@@ -19,6 +19,7 @@ import ballerina/jballerina.java;
 # Consists of APIs to interact with web browsers.
 public isolated class WebDriver {
 
+    # Initializes a new WebDriver instance with the specified browser options.
     public isolated function init(BrowserOptions options) returns Error? {
         match options.browserName {
             CHROME => {
