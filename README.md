@@ -1,5 +1,6 @@
-# module-selenium
-This repository contains the source code of the Ballerina Selenium library package
+# Ballerina Selenium Library
+
+This repository contains the source code of the Ballerina Selenium library package. This module automates web applications across various browsers. Selenium interacts with web browsers directly, simulating user actions such as clicks, text input, page navigation, and more.
 
 [![Build](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/build-timestamped-master.yml)
 [![Trivy](https://github.com/xlibb/module-selenium/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/xlibb/module-selenium/actions/workflows/trivy-scan.yml)
