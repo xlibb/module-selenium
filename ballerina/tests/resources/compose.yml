@@ -1,8 +1,5 @@
-version: "3.8"
-
 services:
   ballerina-selenium-demo:
     image: dharshib/ballerina-selenium-demo:latest
     ports:
       - "8080:80"
-    container_name: test-resource-container
